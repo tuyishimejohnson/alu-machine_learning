@@ -2,6 +2,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-y = np.arange(0, 11) ** 3
+y = np.arange(0, 10) ** 3
+x = np.arange(0, 10)
 
-# your code here
+plt.plot(x, y, color="red")
+plt.show()
