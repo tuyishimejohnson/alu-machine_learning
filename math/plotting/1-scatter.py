@@ -9,8 +9,8 @@ x, y = np.random.multivariate_normal(mean, cov, 2000).T
 y += 180
 
 
-plt.scatter(x, y, color="#16a34a")  # This line creates the scatter plot
-plt.xlabel("weight") # This line shows Men's weight on x-axis
-plt.ylabel("height") # This line shows Men's Height on y-axis
+plt.scatter(x, y, color="magenta")  # This line creates the scatter plot
+plt.xlabel("Height (in)") # This line shows Men's height on x-axis
+plt.ylabel("Weight (lbs)") # This line shows Men's weight on y-axis
 plt.title("Men's Height vs Weight") # The title
 plt.show()
