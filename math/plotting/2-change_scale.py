@@ -12,5 +12,5 @@ y = np.exp((r / t) * x)
 plt.xlabel("Time (years)") # This line shows time in yeaars on x-axis
 plt.ylabel("Fraction Remaining") # This line shows fraction remaining on y-axis
 plt.title("Exponential Decay of C-14") # The title
-plt.plot(x,y) # Plots x and y
+plt.semilogy(x,y) # Plots  x and y with a straight line
 plt.show()
