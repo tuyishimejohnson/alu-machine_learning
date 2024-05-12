@@ -19,6 +19,5 @@ plt.bar(people, fruit[1], bottom=fruit[0], color=colors[1], width=0.5, label=fru
 plt.bar(people, fruit[2], bottom=np.sum(fruit[:2], axis=0), color=colors[2], width=0.5, label=fruit_names[2])
 plt.bar(people, fruit[3], bottom=np.sum(fruit[:3], axis=0), color=colors[3], width=0.5, label=fruit_names[3])
 
-
 plt.legend()
 plt.show()
