@@ -4,6 +4,7 @@
 
 
 def matrix_shape(matrix):
+""" I created an empty array then it and caluculated the shape of the matrix usilng while loop"""
     shape = []
     while isinstance(matrix, list):
         shape.append(len(matrix))
