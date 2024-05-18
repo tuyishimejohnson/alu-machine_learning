@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 def add_matrices2D(mat1, mat2):
     """a function to add two arrays and return a matrix"""
-    
+
     if len(mat1) != len(mat2):
         return None
     for row1, row2 in zip(mat1, mat2):
