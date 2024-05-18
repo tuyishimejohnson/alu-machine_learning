@@ -11,7 +11,9 @@ print(m.shape)
 print(n.shape)
 
 
-
+def matrix_shape(matrix):
+    m = np.array(matrix)
+    return m.shape
 
 
 
