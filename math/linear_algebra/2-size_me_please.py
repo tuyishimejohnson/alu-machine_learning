@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-'''A function that returns the shape of the matrix'''
+'''A function that returns the shape of the matrix. 
+Initialized an empty array and calculated the shape 
+	of matrix using while loop'''
 
 
 def matrix_shape(matrix):
-""" I created an empty array then it and caluculated the shape of the matrix usilng while loop"""
     shape = []
     while isinstance(matrix, list):
         shape.append(len(matrix))
