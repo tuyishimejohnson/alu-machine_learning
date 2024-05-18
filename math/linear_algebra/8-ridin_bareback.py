@@ -3,23 +3,18 @@
 def mat_mul(mat1, mat2):
     """
     condition one: checking whether the length of mat1 equals mat2
-    contition two: looping through the rows using also zip method
+    contition two: looping through the matrices to get the length
     """
-    
+
+
     if len(mat1[0]) != len(mat2):
         return None
-    for row1, row2 in zip(mat1, mat2):
-        if len(row1) != len(row2):
-            return None
-    result = []
-    for row1, row2 in zip(mat1, mat2):
-        new_row = [
-            elem1 * elem2 
-            for elem1, elem2 in zip(row1, row2)
-        ]
-        result.append(new_row)
-    return result
-
-
+    r = [[0 for _ in range(len(mat2[0]))] for _ in range(len(mat1))]
+    for i in range(len(mat1)):
+        for j in range(len(mat2[0])):
+            for k in range(len(mat2)):
+                r[i][j] += mat1[i][k] * mat2[k][j]
+    
+    return r
 if __name__ == "__main__":
     mat_mul = __import__('8-ridin_bareback').mat_mul
