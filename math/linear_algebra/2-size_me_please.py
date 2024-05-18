@@ -4,8 +4,6 @@
 
 
 def matrix_shape(matrix):
-'''shape: empty array
-while loop: loop through arrys'''
     shape = []
     while isinstance(matrix, list):
         shape.append(len(matrix))
