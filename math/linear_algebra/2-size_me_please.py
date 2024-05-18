@@ -1,22 +1,12 @@
-#!/usr/bin/env python3
 
+#!/usr/bin/env python3
 def matrix_shape(matrix):
     new_array = []
-    rows = len(matrix)
-    print(rows)
-    columns = len(matrix[0])
-    
-
-    if columns <= 2 and rows <= 2:
-        new_array = [rows, columns]
-    else:
-        for m in matrix:
-            if rows == 1:
-                new_array = [rows, len(m)]
-                break
-            else:
-                for i in m:
-                    new_array = [rows, columns, len(i)]        
+    while isinstance(matrix, list):
+        new_array.append(len(matrix))
+        matrix = matrix[0]
     return new_array
-result = matrix_shape([[1, 2], [3, 4]])
+
+result = matrix_shape([[[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]],
+        [[16, 17, 18, 19, 20], [21, 22, 23, 24, 25], [26, 27, 28, 29, 30]]])
 print(result)
