@@ -2,6 +2,7 @@
 
 '''A function that returns the shape of the matrix'''
 
+
 def matrix_shape(matrix):
     shape = []
     while isinstance(matrix, list):
@@ -11,3 +12,5 @@ def matrix_shape(matrix):
 
 if __name__ == "__main__":
     matrix_shape_function = __import__('2-size_me_please').matrix_shape
+
+
