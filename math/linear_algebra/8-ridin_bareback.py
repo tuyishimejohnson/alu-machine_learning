@@ -11,8 +11,6 @@ def mat_mul(mat1, mat2):
     for row1, row2 in zip(mat1, mat2):
         if len(row1) != len(row2):
             return None
-
-    
     result = []
     for row1, row2 in zip(mat1, mat2):
         new_row = [
@@ -20,7 +18,6 @@ def mat_mul(mat1, mat2):
             for elem1, elem2 in zip(row1, row2)
         ]
         result.append(new_row)
-    
     return result
 
 
