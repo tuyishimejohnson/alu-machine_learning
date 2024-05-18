@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-'''A function that returns the shape of the matrix. Initialized an empty array and calculated the shape of matrix using while loop'''
+'''A function that returns the shape of the matrix, calculated the shape of matrix using while loop'''
 
 
 def matrix_shape(matrix):
