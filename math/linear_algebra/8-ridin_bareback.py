@@ -6,7 +6,7 @@ def mat_mul(mat1, mat2):
     contition two: looping through the rows using also zip method
     """
     
-    if len(mat1) != len(mat2):
+    if len(mat1[0]) != len(mat2):
         return None
     for row1, row2 in zip(mat1, mat2):
         if len(row1) != len(row2):
