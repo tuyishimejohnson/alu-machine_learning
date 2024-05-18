@@ -1,10 +1,24 @@
+
 #!/usr/bin/env python3
-import numpy as np
 
 def matrix_shape(matrix):
-    m=np.array(matrix)
-    return m.shape
+    new_array = []
+    rows = len(matrix)
+    columns = len(matrix[0])
+    print(columns)
+    print(rows)
 
-result = matrix_shape( [[[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]],
-        [[16, 17, 18, 19, 20], [21, 22, 23, 24, 25], [26, 27, 28, 29, 30]]])
-print(list(result))
+    if columns <= 2 and rows <= 2:
+        new_array = [rows, columns]
+    else:
+        for m in matrix:
+            for i in m:
+                new_array = [rows, columns, len(i)]
+            
+            
+    return new_array
+
+result = matrix_shape([[1, 2], [3, 4]])
+
+
+print(result)
