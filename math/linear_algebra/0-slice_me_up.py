@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-arr = [9, 8, 2, 3, 9, 4, 1, 0, 3]
+arr = [9, 8, 2, 3, 9, 4, 1, 0]
 arr1 =  slice(0, 2)
 arr2 =  slice(4,None)
 arr3 =  slice(1, 6)
