@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-import numpy as np
 """a function that transposes a matrix  """
 
 
 def np_transpose(matrix):
     """
-    np: shorthand of the module numpy
+    T: shorthand of the transpose
     matrix: argument that has matrices
     """
-    return np.transpose(matrix)
+    return matrix.T
