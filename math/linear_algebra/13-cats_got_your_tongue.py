@@ -5,7 +5,6 @@ import numpy as np
 
 def np_cat(mat1, mat2, axis=0):
     """
-    np: numpy module imported as np
     concatenate: used to join two matrics
     axis: arrays with more than one dimension
     """
