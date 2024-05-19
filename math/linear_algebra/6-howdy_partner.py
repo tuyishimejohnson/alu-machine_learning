@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
-def cat_arrays(arr1, arr2):
-    """A function that concatenates two arrays and return a new list"""
+"""A function that concatenates two arrays and return a new list"""
 
+
+def cat_arrays(arr1, arr2):
+    """
+    params:
+    arr1: first array
+    arr2: second array
+    """
     return arr1 + arr2
 
 
