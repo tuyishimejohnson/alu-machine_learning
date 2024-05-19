@@ -1,10 +1,12 @@
-
 #!/usr/bin/env python3
-
-'''A function that returns the shape of the matrix,using while loop'''
+'''a function that returns the shape of the matrix,using while loop'''
 
 
 def matrix_shape(matrix):
+    """
+    matrix: a parameter that holds a matrix
+    shape: creating an empty array and use is instance method
+    """
     shape = []
     while isinstance(matrix, list):
         shape.append(len(matrix))
