@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-
 """A function that returns the sum of two arrays in matrix"""
 
 
 def add_arrays(arr1, arr2):
+    """
+    first condition: checking whether the length of arr1 != to the length of arr2
+    second condition: add arr1 and arr2 with a zip
+    """
     if len(arr1) != len(arr2):
         return None
     else:
