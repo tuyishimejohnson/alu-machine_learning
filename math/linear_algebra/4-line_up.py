@@ -4,7 +4,7 @@
 
 def add_arrays(arr1, arr2):
     """
-    first condition: checking whether the length of arr1 != to the length of arr2
+    first condition: checking if length of arr1 != to the length of arr2
     second condition: add arr1 and arr2 with a zip
     """
     if len(arr1) != len(arr2):
