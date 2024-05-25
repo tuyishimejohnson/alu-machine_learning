@@ -49,7 +49,11 @@ def minor(matrix):
         minor_row = []
         for j in range(num_cols):
             minor_ij = get_minor(matrix, i, j)
-            minor_determinant = determinant(minor_ij)
+	    if len(minor_ij) == 0:  # This happens only for 1x1 matrix
+    	        minor_determinant = 1
+	    else:
+	        minor_determinant = determinant(minor_ij)
+
             minor_row.append(minor_determinant)
         minor_matrix.append(minor_row)
 
