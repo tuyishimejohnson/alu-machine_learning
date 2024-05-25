@@ -59,9 +59,11 @@ def minor(matrix):
 """
 Calculating the determinant of a given matrix.
 """
+
+
 def determinant(matrix):
     """
-    Parameters:
+    Params:
     matrix (list of lists): A square matrix.
 
     Returns:
@@ -83,5 +85,5 @@ def determinant(matrix):
             row[:c] + row[c+1:]
             for row in matrix[1:]
         ])
-    
+
     return det
