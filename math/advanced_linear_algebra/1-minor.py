@@ -11,6 +11,8 @@ Calculate the minor matrix of a given matrix.
 
 
 def minor(matrix):
+
+
     """
     Params:
     matrix: list of lists
@@ -38,6 +40,8 @@ def minor(matrix):
             raise ValueError("matrix must be a non-empty square matrix")
 
     def get_minor(matrix, i, j):
+
+
         """function to get the minor matrix excluding row i and column j """
         return [
             [matrix[row][col] for col in range(num_cols) if col != j]
@@ -62,6 +66,8 @@ Calculating the determinant of a given matrix.
 
 
 def determinant(matrix):
+
+
     """
 
     Params:
