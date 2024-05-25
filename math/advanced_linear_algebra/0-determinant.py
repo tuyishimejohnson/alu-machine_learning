@@ -5,7 +5,7 @@ def determinant(matrix):
     Calculate the determinant of a matrix.
 
     Parameters:
-    matrix (list of lists): A square matrix whose determinant should be calculated.
+    matrix: square matrix whose determinant should be calculated.
 
     Returns:
     int or float: The determinant of the matrix.
