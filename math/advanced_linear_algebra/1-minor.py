@@ -4,6 +4,8 @@
 """
 Function to calculate the minor matrix of a given matrix
 """
+
+
 def minor(matrix):
     """
     Params:
@@ -18,10 +20,10 @@ def minor(matrix):
     """
     if type(matrix) != list:
         raise TypeError("matrix must be a list of lists")
-    
+
     for row in matrix:
         if type(row) != list:
-            raise TypeError("matrix must be a list of lists")
+           raise TypeError("matrix must be a list of lists")
 
     num_rows = len(matrix)
     if num_rows == 0 or len(matrix[0]) == 0:
