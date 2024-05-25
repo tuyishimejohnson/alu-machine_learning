@@ -23,7 +23,7 @@ def minor(matrix):
 
     for row in matrix:
         if type(row) != list:
-           raise TypeError("matrix must be a list of lists")
+            raise TypeError("matrix must be a list of lists")
 
     num_rows = len(matrix)
     if num_rows == 0 or len(matrix[0]) == 0:
@@ -52,7 +52,7 @@ def minor(matrix):
             minor_determinant = determinant(minor_ij)
             minor_row.append(minor_determinant)
         minor_matrix.append(minor_row)
-  
+
     return minor_matrix
 
 
