@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 def determinant(matrix):
     """
     Calculate the determinant of a matrix.
@@ -14,30 +15,44 @@ def determinant(matrix):
     ValueError: If matrix is not a square matrix.
     """
     
-    # Check if the matrix is a list
+    """
+    Checking if a matrix is a list of lists
+    """
     if type(matrix) != list:
         raise TypeError("matrix must be a list of lists")
     
-    # Check if each element of the matrix is a list
+    """
+    Check if each element of the matrix is a list
+    """
     for row in matrix:
         if type(row) != list:
             raise TypeError("matrix must be a list of lists")
     
-    # Check if the matrix is square
+    """
+    special case of a 0x0 matrix
+    """
+    if matrix == [[]]:
+        return 1
+    
+    """
+    Check if the matrix is square
+    """
     n = len(matrix)
     for row in matrix:
         if len(row) != n:
             raise ValueError("matrix must be a square matrix")
     
-    # Base cases for small matrices
-    if matrix == [[]]:
-        return 1  # The determinant of a 0x0 matrix is defined as 1
+    """
+    cases for small matrices
+    """
     if n == 1:
         return matrix[0][0]
     if n == 2:
         return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
     
-    # Recursive case for larger matrices
+    """
+    Recursive case for larger matrices
+    """
     det = 0
     for c in range(n):
         submatrix = [row[:c] + row[c + 1:] for row in matrix[1:]]
