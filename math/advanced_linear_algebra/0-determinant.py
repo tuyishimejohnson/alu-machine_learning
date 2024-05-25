@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+
+"""
+This is  a function to calculate the determinant of a matrix.
+"""
+
 def determinant(matrix):
     """
     Calculate the determinant of a matrix.
