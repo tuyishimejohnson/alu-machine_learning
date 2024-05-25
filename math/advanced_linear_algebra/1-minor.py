@@ -36,8 +36,6 @@ def minor(matrix):
     for row in matrix:
         if len(row) != num_cols:
             raise ValueError("matrix must be a non-empty square matrix")
-
-
     def get_minor(matrix, i, j):
         """function to get the minor matrix excluding row i and column j """
         return [
