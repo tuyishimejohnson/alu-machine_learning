@@ -36,6 +36,7 @@ def minor(matrix):
     for row in matrix:
         if len(row) != num_cols:
             raise ValueError("matrix must be a non-empty square matrix")
+
     def get_minor(matrix, i, j):
         """function to get the minor matrix excluding row i and column j """
         return [
@@ -54,6 +55,7 @@ def minor(matrix):
             minor_row.append(minor_determinant)
         minor_matrix.append(minor_row)
     return minor_matrix
+
 
 """
 Calculating the determinant of a given matrix.
