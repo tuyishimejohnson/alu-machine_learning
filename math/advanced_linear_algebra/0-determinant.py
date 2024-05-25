@@ -52,5 +52,5 @@ def determinant(matrix):
         submatrix = [row[:c] + row[c + 1:] for row in matrix[1:]]
         sign = (-1) ** c
         det += sign * matrix[0][c] * determinant(submatrix)
-    
+
     return det
