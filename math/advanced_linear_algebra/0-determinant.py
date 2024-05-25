@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
-
-
 def determinant(matrix):
     """
     Calculate the determinant of a matrix.
 
     Params:
-    matrix (list of lists): A square matrix whose determinant should be calculated.
+    matrix: list of lists to calcuate determinant.
     """
 
     """
@@ -36,5 +34,4 @@ def determinant(matrix):
         submatrix = [row[:c] + row[c + 1:] for row in matrix[1:]]
         sign = (-1) ** c
         d += sign * matrix[0][c] * determinant(submatrix)
-    
     return d
