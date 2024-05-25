@@ -19,7 +19,6 @@ def determinant(matrix):
     """
     if type(matrix) != list:
         raise TypeError("matrix must be a list of lists")
-
     """
     Check if each element of the matrix is a list
     """
@@ -38,7 +37,6 @@ def determinant(matrix):
     for row in matrix:
         if len(row) != n:
             raise ValueError("matrix must be a square matrix")
-    
     """
     cases for small matrices
     """
@@ -46,7 +44,6 @@ def determinant(matrix):
         return matrix[0][0]
     if n == 2:
         return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
-    
     """
     Recursive case for larger matrices
     """
