@@ -13,27 +13,24 @@ def determinant(matrix):
     Raises:
     TypeError: If matrix is not a list of lists.
     ValueError: If matrix is not a square matrix.
-    """
-    
+    """ 
     """
     Checking if a matrix is a list of lists
     """
     if type(matrix) != list:
         raise TypeError("matrix must be a list of lists")
-    
+
     """
     Check if each element of the matrix is a list
     """
     for row in matrix:
         if type(row) != list:
-            raise TypeError("matrix must be a list of lists")
-    
+            raise TypeError("matrix must be a list of lists") 
     """
     special case of a 0x0 matrix
     """
     if matrix == [[]]:
         return 1
-    
     """
     Check if the matrix is square
     """
