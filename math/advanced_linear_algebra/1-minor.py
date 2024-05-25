@@ -28,22 +28,22 @@ def minor(matrix):
     num_rows = len(matrix)
     if num_rows == 0 or len(matrix[0]) == 0:
         raise ValueError("matrix must be a non-empty square matrix")
-    
+
     num_cols = len(matrix[0])
     if num_rows != num_cols:
         raise ValueError("matrix must be a non-empty square matrix")
-    
+
     for row in matrix:
         if len(row) != num_cols:
             raise ValueError("matrix must be a non-empty square matrix")
-    
+
     def get_minor(matrix, i, j):
-        """ Helper function to get the minor matrix excluding row i and column j """
+        """ function to get minor matrix excluding row i and column j """
         return [
             [matrix[row][col] for col in range(num_cols) if col != j]
             for row in range(num_rows) if row != i
         ]
-    
+
     minor_matrix = []
     for i in range(num_rows):
         minor_row = []
@@ -52,7 +52,7 @@ def minor(matrix):
             minor_determinant = determinant(minor_ij)
             minor_row.append(minor_determinant)
         minor_matrix.append(minor_row)
-    
+  
     return minor_matrix
 
 
@@ -72,7 +72,7 @@ def determinant(matrix):
     Raises:
     ValueError: If the matrix is not square or is empty.
     """
-    
+
     if len(matrix) == 1:
         return matrix[0][0]
 
