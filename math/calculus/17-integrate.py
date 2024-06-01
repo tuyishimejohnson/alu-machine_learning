@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 
+"""A function that calculates integral of polynomial"""
+
+
 def poly_integral(poly, C=0):
     """
     c: integration constant
