@@ -23,5 +23,5 @@ def poly_derivative(poly):
         coefficient * power
         for power, coefficient in enumerate(poly)
     ][1:]
-    
+
     return derivative
