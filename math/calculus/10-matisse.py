@@ -14,7 +14,7 @@ def poly_derivative(poly):
     """
     
     try:
-        if type(poly) != list:
+        if type(poly) is not list:
             return None
         for c in poly:
             c + 0
