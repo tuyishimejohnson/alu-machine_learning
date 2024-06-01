@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 """A function that calculates a derivative of polynomial"""
 
 
@@ -12,19 +13,13 @@ def poly_derivative(poly):
     next step: calculating the derivative
     """
 
-    if type(poly) is not list:
+    if not isinstance(poly, list) or not poly:
         return None
-    
-    for coef in poly:
-        try:
-            coef + 0
-        except TypeError:
+    for coefficient in poly:
+        if not isinstance(coefficient, (int, float)):
             return None
     if len(poly) == 1:
         return [0]
-    derivative = [i * poly[i] for i in range(1, len(poly))]
-
-    if all(coef == 0 for coef in derivative):
-        return [0]
+    derivative = [coefficient * power for power, coefficient in enumerate(poly)][1:]
 
     return derivative
