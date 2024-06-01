@@ -2,12 +2,13 @@
 
 """A function that calculates the summation of i squared. """
 
+
 def summation_i_squared(n):
     """
     n: stopping condition
     return: integer value of the sum
     if n is not a number: None
-    try: checking whether n is an integer 
+    try: checking whether n is an integer
     """
     try:
         integer = int(n)
