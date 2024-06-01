@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
+
 """A function that calculates the summation of i squared. """
 
-def calculate_n(n):
+def summation_i_squared(n):
     """
     n: stopping condition
     return: integer value of the sum
@@ -12,5 +13,4 @@ def calculate_n(n):
     if(type(n) != int):
         return None
     
-    else:
-        return (n*(n + 1)*((2*n) + 1)) // 6
+    return (n*(n + 1)*((2*n) + 1))//6
