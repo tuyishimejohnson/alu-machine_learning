@@ -39,7 +39,10 @@ class Poisson:
                 factorial *= i
             e_neg_lambtha = 1.0
             for i in range(1, 100):
-                e_neg_lambtha += (-self.lambtha) ** i / factorial
+                factorial_t=1
+                for j in range(1, i+1):
+                    factorial_t *= j
+                e_neg_lambtha += (-self.lambtha) ** i / factorial_t
             pmf = (self.lambtha ** k) * e_neg_lambtha / factorial
             return pmf
         
