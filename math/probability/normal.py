@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 
-
 """
 A class that represents a normal distribution.
-"""
-
-
-#!/usr/bin/env python3
-"""
-This class represents a Normal distribution
 """
 
 
