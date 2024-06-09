@@ -65,7 +65,7 @@ class Normal:
         erf = (x - self.mean) / (self.stddev * (2 ** 0.5))
         cdf = 0.5 * (1 + (self.erf(erf)))
         return cdf
-    
+
     def erf(self, x):
         """ Calculates the error function
         """
