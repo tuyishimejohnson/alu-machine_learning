@@ -25,26 +25,26 @@ class Poisson:
             self.lambtha = float(sum(data) / len(data))
 
 
-    # Calculate factorial of k
-    # Calculate e^-lambtha using Taylor series
-    # Calculate PMF
+
+    """ A method that calculates the value of the PMF for a given number of successes. """
     
+
     def pmf(self, k):
+        """ 
+        Calculate factorial of k
+        Calculate PMF 
+        """
         k = int(k)
         if k < 0:
             return 0
         else:
-            
             factorial = 1
             for i in range(1, k + 1):
                 factorial *= i
-
             
             e_neg_lambtha = 1.0
             for i in range(1, 100):
                 e_neg_lambtha += (-self.lambtha) ** i / factorial
-
-            
             pmf = (self.lambtha ** k) * e_neg_lambtha / factorial
             return pmf
         
