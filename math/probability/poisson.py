@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 """
 Defining a class called Poisson.
 """
