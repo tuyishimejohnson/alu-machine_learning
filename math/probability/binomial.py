@@ -37,3 +37,29 @@ class Binomial:
 
             self.n = int(n)
             self.p = float(p)
+
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of successes
+
+        k = number of “successes”
+        If k is not an integer, convert it to an integer
+        If k is out of range, return 0
+        Returns the PMF value for k
+
+        """
+        if not isinstance(k, int):
+            k = int(k)
+        if k < 0:
+            return 0
+        factorial_k = 1
+        for i in range(1, k + 1):
+            factorial_k *= i
+        factorial_n = 1
+        for i in range(1, self.n + 1):
+            factorial_n *= i
+        factorial_n_k = 1
+        for i in range(1, self.n - k + 1):
+            factorial_n_k *= i
+        coefficient = factorial_n / (factorial_k * factorial_n_k)
+        return coefficient * (self.p ** k) * ((1 - self.p) ** (self.n - k))
