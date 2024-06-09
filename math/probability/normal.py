@@ -8,7 +8,7 @@ A class that represents a normal distribution.
 
 class Normal:
 
-    """ 
+    """
     Calculate the normal distribution
     """
     def __init__(self, data=None, mean=0., stddev=1.):
