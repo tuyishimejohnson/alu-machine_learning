@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import math
+
 """
 Defining a class called Poisson.
 """
@@ -23,12 +23,28 @@ class Poisson:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = float(sum(data) / len(data))
+
+
+    # Calculate factorial of k
+    # Calculate e^-lambtha using Taylor series
+    # Calculate PMF
     
     def pmf(self, k):
-        exponential = math.exp(-self.lambtha)
         k = int(k)
         if k < 0:
             return 0
         else:
-            return (self.lambtha**k)* exponential/ math.factorial(k)
+            
+            factorial = 1
+            for i in range(1, k + 1):
+                factorial *= i
+
+            
+            e_neg_lambtha = 1.0
+            for i in range(1, 100):
+                e_neg_lambtha += (-self.lambtha) ** i / factorial
+
+            
+            pmf = (self.lambtha ** k) * e_neg_lambtha / factorial
+            return pmf
         
