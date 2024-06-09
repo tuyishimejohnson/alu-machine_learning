@@ -5,7 +5,7 @@ Defining a class called Poisson.
 
 
 class Poisson:
-    """ 
+    """
     __init__: used to initialize a method for the class instance.
     lambtha <= 0: It must be a positive value.
 
