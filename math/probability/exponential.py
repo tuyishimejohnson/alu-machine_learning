@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
 
-""" 
+"""
 Create an Exponential class to represent
 exponential distribution.
 """
-class Exponential:
 
-    """ 
+
+class Exponential:
+    """
     Method for exponential distribution
     if lambtha value is below 0 there is an error
     Change lambtha into a floating number
