@@ -29,7 +29,7 @@ class Poisson:
     """
     def pmf(self, k):
         """
-        Calculates the value of the PMF for a given number of “successes”
+        Calculates the value of the PMF for a given number of successes
         """
         if not isinstance(k, int):
             k = int(k)
@@ -40,4 +40,3 @@ class Poisson:
             factorial = factorial * i
         result = self.lambtha ** k * 2.7182818285 ** (-self.lambtha)
         return result / factorial
-        
