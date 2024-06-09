@@ -31,18 +31,21 @@ class Exponential:
     """
 
 
-    def exp(self, x):
+    def pdf(self, x):
         """
         x is the time period
         Returns the PDF value for x
         If x is out of range, return 0
         """
-        n = 0
-        term = 1
-        result = 1
-        #n, term, result = 0, 1, 1
-        while abs(term) > 1e-15:
-            n += 1
-            term *= x / n
-            result += term
-        return result
+        if x < 0:
+            return 0
+        return self.lambtha * 2.7182818285 ** (-self.lambtha * x)
+
+    def cdf(self, x):
+        """
+        Calculates the value of the CDF for a given time period
+        x = time period
+        """
+        if x < 0:
+            return 0
+        return 1 - 2.7182818285 ** (-self.lambtha * x)
