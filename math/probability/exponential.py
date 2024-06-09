@@ -29,8 +29,6 @@ class Exponential:
     """
     Calculate the PDF of a given time Period.
     """
-
-
     def pdf(self, x):
         """
         x is the time period
