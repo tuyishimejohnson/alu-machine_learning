@@ -24,7 +24,6 @@ class Normal:
         mean - mean of the distribution
         stddev - standard deviation
         """
-        # Updated values for pi and Euler's number
         self.PI = 3.141592653589793
         self.E = 2.718281828459045
 
@@ -44,7 +43,6 @@ class Normal:
             self.mean = float(sum(data) / len(data))
 
             squared_diff = [(x - self.mean) ** 2 for x in data]
-            # Use the population standard deviation formula
             self.stddev = (sum(squared_diff) / len(data)) ** 0.5
 
     def z_score(self, x):
