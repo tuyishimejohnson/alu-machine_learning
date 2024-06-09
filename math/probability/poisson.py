@@ -24,15 +24,11 @@ class Poisson:
                 raise ValueError("data must contain multiple values")
             self.lambtha = float(sum(data) / len(data))
 
-
-
     """ A method that calculates the value of the PMF for a given number of successes. """
-    
-
     def pmf(self, k):
-        """ 
+        """
         Calculate factorial of k
-        Calculate PMF 
+        Calculate PMF
         """
         k = int(k)
         if k < 0:
@@ -41,7 +37,6 @@ class Poisson:
             factorial = 1
             for i in range(1, k + 1):
                 factorial *= i
-            
             e_neg_lambtha = 1.0
             for i in range(1, 100):
                 e_neg_lambtha += (-self.lambtha) ** i / factorial
