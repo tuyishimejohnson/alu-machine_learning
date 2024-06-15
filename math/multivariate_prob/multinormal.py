@@ -25,8 +25,7 @@ class MultiNormal:
 
         deviation = data - self.mean
         self.cov = deviation @ deviation.T / (n - 1)
-
-    
+        
     def pdf(self, x):
         """
         A method to calculates the PDF at a data point.
