@@ -29,17 +29,21 @@ class MultiNormal:
     
     def pdf(self, x):
         """
-        A method that is used to calculate the PDF at a datapoint
+        A method to calculates the PDF at a data point.
         """
-        if not isinstance(x, np.ndarray):
+        if type(x) is not np.ndarray:
             raise TypeError("x must be a numpy.ndarray")
-        d = self.mean.shape[0]
-        if x.shape != (d, 1):
-            raise ValueError(f"x must have the shape ({d}, 1)")
+        d = self.cov.shape[0]
+        if len(x.shape) != 2:
+            raise ValueError(f"x must have the shape {d}")
+        check_d, one = x.shape
+        if check_d != d or one != 1:
+            raise ValueError(f"x must have the shape {d}")
 
-        cov_inv = np.linalg.inv(self.cov)
-        cov_det = np.linalg.det(self.cov)
-        denominator = np.sqrt((2 * np.pi) ** d * cov_det)
-        exponent = -0.5 * ((x - self.mean).T @ cov_inv @ (x - self.mean))
-
-        return float(np.exp(exponent) / denominator)
+        det = np.linalg.det(self.cov)
+        inv = np.linalg.inv(self.cov)
+        pdf = 1.0 / np.sqrt(((2 * np.pi) ** d) * det)
+        mult = np.matmul(np.matmul((x - self.mean).T, inv), (x - self.mean))
+        pdf *= np.exp(-0.5 * mult)
+        pdf = pdf[0][0]
+        return pdf
