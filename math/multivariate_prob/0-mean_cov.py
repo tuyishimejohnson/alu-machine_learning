@@ -7,17 +7,8 @@ def mean_cov(X):
     Calculate the mean and covariance of a data set.
 
     Parameters:
-    X (numpy.ndarray of shape (n, d)): The data set where
-        n is the number of data points and
+        n is the number of data points
         d is the number of dimensions in each data point.
-
-    Raises:
-    TypeError: If X is not a 2D numpy.ndarray.
-    ValueError: If X does not contain multiple data points.
-
-    Returns:
-    mean (numpy.ndarray of shape (1, d)): The mean of the data set.
-    cov (numpy.ndarray of shape (d, d)): The covariance matrix of the data set.
     """
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         raise TypeError("X must be a 2D numpy.ndarray")
