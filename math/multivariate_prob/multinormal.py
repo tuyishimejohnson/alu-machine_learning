@@ -12,7 +12,7 @@ class MultiNormal:
     """
     n: the number of data points
     d: the number of dimensions in each data point
-    If data is not a 2D numpy.ndarray: TypeError> data must be a 2D numpy.ndarray
+    TypeError: data must be a 2D numpy.ndarray
     If n < 2, ValueError: data must contain multiple data points
     """
     def __init__(self, data):
