@@ -26,10 +26,11 @@ class MultiNormal:
         deviation = data - self.mean
         self.cov = deviation @ deviation.T / (n - 1)
 
-    """
-    A method that is used to calculate the PDF at a datapoint
-    """
+    
     def pdf(self, x):
+        """
+        A method that is used to calculate the PDF at a datapoint
+        """
         if not isinstance(x, np.ndarray):
             raise TypeError("x must be a numpy.ndarray")
         d = self.mean.shape[0]
