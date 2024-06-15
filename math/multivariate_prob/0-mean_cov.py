@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 import numpy as np
-
 """
 A function that calculates the mean and covariance
 of a dataset.
 """
-
-
 def mean_cov(X):
     """
     X: it must be a 2D array
