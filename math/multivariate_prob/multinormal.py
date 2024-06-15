@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
-import numpy as np
-
 """
 A class that represents a Multivariate Normal distribution
 """
+import numpy as np
 
 
 class MultiNormal:
@@ -26,4 +25,3 @@ class MultiNormal:
 
         deviation = data - self.mean
         self.cov = deviation @ deviation.T / (n - 1)
-        
