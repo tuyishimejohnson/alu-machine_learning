@@ -5,10 +5,6 @@ import numpy as np
 def mean_cov(X):
     """
     Calculate the mean and covariance of a data set.
-
-    Parameters:
-        n is the number of data points
-        d is the number of dimensions in each data point.
     """
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         raise TypeError("X must be a 2D numpy.ndarray")
