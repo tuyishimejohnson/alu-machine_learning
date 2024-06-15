@@ -7,6 +7,7 @@ A function to calculate the mean and covariance of a dataset
 
 import numpy as np
 
+
 def mean_cov(X):
     """
     Calculate the mean and covariance of a data set.
