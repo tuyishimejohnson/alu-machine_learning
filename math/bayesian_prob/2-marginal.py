@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 likelihood = __import__("0-likelihood").likelihood
 intersection = __import__("1-intersection").intersection
