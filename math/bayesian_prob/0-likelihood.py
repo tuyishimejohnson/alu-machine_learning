@@ -41,5 +41,5 @@ def likelihood(x, n, P):
 
     # Calculate the likelihood for each probability in P
     likelihoods = binom_coeff * (P ** x) * ((1 - P) ** (n - x))
-    
+
     return likelihoods
