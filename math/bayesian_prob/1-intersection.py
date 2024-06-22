@@ -10,13 +10,15 @@ import numpy as np
 likelihood = __import__('0-likelihood').likelihood
 
 def intersection(x, n, P, Pr):
-    """A function to calculate the intersection of obtaining data
+    """
+    A function to calculate the intersection of obtaining data
     with the various hypithetical probabilities.
     """
     if not isinstance(n, int) or n <= 0:
         raise ValueError("n must be a positive integer")
     if not isinstance(x, int) or x < 0:
-        raise ValueError("x must be an integer that is greater than or equal to 0")
+        raise ValueError("x must be an integer that is"
+                         " greater than or equal to 0")
     if x > n:
         raise ValueError("x cannot be greater than n")
     if not isinstance(P, np.ndarray) or P.ndim != 1:
@@ -32,7 +34,7 @@ def intersection(x, n, P, Pr):
 
     # Calculate the likelihoods
     likelihoods = likelihood(x, n, P)
-    
+
     # Calculate the intersection
     intersections = likelihoods * Pr
     
