@@ -39,5 +39,3 @@ def likelihood(x, n, P):
     likelihoods = binom_coeff * (P ** x) * ((1 - P) ** (n - x))
     
     return likelihoods
-
-
