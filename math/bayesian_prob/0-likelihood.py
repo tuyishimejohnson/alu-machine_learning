@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""
+This function is used to calculate the likelihood
+of obtaining data.
+"""
+
 import numpy as np
 
 def factorial(n):
