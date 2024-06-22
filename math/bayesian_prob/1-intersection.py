@@ -3,13 +3,14 @@
 
 """
 Imported the likelihood file.
-Create the function 'intersection'calculate the intersection 
+Create the function 'intersection'calculate the intersection
 of obtaining data with the various hypithetical probabilities.
 """
 import numpy as np
 
 
 likelihood = __import__('0-likelihood').likelihood
+
 
 def intersection(x, n, P, Pr):
     """
