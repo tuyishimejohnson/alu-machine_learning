@@ -9,7 +9,6 @@ import numpy as np
 
 
 def factorial(n):
-    """Calculate the factorial of n (n!)"""
     if n == 0 or n == 1:
         return 1
     result = 1
@@ -19,7 +18,6 @@ def factorial(n):
 
 
 def binomial_coefficient(n, x):
-    """Calculate the binomial coefficient (n choose x)"""
     return factorial(n) / (factorial(x) * factorial(n - x))
 
 
@@ -36,10 +34,8 @@ def likelihood(x, n, P):
     if np.any((P < 0) | (P > 1)):
         raise ValueError("All values in P must be in the range [0, 1]")
 
-    # Calculate the binomial coefficient
-    binom_coeff = binomial_coefficient(n, x)
 
-    # Calculate the likelihood for each probability in P
+    binom_coeff = binomial_coefficient(n, x)
     likelihoods = binom_coeff * (P ** x) * ((1 - P) ** (n - x))
 
     return likelihoods
