@@ -11,6 +11,7 @@ likelihood = __import__("0-likelihood").likelihood
 intersection = __import__("1-intersection").intersection
 marginal = __import__("2-marginal").marginal
 
+
 def posterior(x, n, P, Pr):
     """
     Params:
@@ -22,7 +23,8 @@ def posterior(x, n, P, Pr):
     if not isinstance(n, int) or n <= 0:
         raise ValueError("n must be a positive integer")
     if not isinstance(x, int) or x < 0:
-        raise ValueError("x must be an integer that is greater than or equal to 0")
+        raise ValueError("x must be an integer that is"
+                         " greater than or equal to 0")
     if x > n:
         raise ValueError("x cannot be greater than n")
     if not isinstance(P, np.ndarray) or P.ndim != 1:
@@ -38,7 +40,6 @@ def posterior(x, n, P, Pr):
 
     intersections = intersection(x, n, P, Pr)
     marginal_prob = marginal(x, n, P, Pr)
-    
+
     posterior_prob = intersections / marginal_prob
     return posterior_prob
-
