@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""
+Import likelihood and intersection files.
+create a function called marginal that calculates the
+marginal probability of obtaining the data
+"""
 
 import numpy as np
 
@@ -9,6 +14,13 @@ intersection = __import__("1-intersection").intersection
 
 def marginal(x, n, P, Pr):
 
+    """
+    Params:
+    x: number of patients with side effects
+    n: total number of patients
+    p: 1D numpy.ndarray
+    Pr: 1D numpy.ndarray with beliefs of P
+    """
     if not isinstance(n, int) or n <= 0:
         raise ValueError("n must be a positive integer")
     if not isinstance(x, int) or x < 0:
