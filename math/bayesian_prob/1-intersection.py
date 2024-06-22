@@ -2,7 +2,9 @@
 
 
 """
-These 
+Imported the likelihood file.
+Create the function 'intersection'calculate the intersection 
+of obtaining data with the various hypithetical probabilities.
 """
 import numpy as np
 
@@ -11,8 +13,11 @@ likelihood = __import__('0-likelihood').likelihood
 
 def intersection(x, n, P, Pr):
     """
-    A function to calculate the intersection of obtaining data
-    with the various hypithetical probabilities.
+    Params:
+    x: number of patients with side effects
+    n: total number of patients
+    p: 1D numpy.ndarray
+    Pr: 1D numpy.ndarray with beliefs of P
     """
     if not isinstance(n, int) or n <= 0:
         raise ValueError("n must be a positive integer")
@@ -37,5 +42,5 @@ def intersection(x, n, P, Pr):
 
     # Calculate the intersection
     intersections = likelihoods * Pr
-    
+
     return intersections
