@@ -7,6 +7,7 @@ of obtaining data.
 
 import numpy as np
 
+
 def factorial(n):
     """Calculate the factorial of n (n!)"""
     if n == 0 or n == 1:
@@ -16,9 +17,11 @@ def factorial(n):
         result *= i
     return result
 
+
 def binomial_coefficient(n, x):
     """Calculate the binomial coefficient (n choose x)"""
     return factorial(n) / (factorial(x) * factorial(n - x))
+
 
 def likelihood(x, n, P):
     if not isinstance(n, int) or n <= 0:
@@ -35,7 +38,7 @@ def likelihood(x, n, P):
 
     # Calculate the binomial coefficient
     binom_coeff = binomial_coefficient(n, x)
-    
+
     # Calculate the likelihood for each probability in P
     likelihoods = binom_coeff * (P ** x) * ((1 - P) ** (n - x))
     
