@@ -2,10 +2,11 @@
 """
 A function that performs a convolution on grayscale images
 """
+
+
 import numpy as np
 
 def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
-
     """
     Returns: a numpy.ndarray containing the convolved images
     """
@@ -32,7 +33,7 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     convolved_images = np.zeros((m, out_h, out_w))
 
     # Pad the images
-    padded_images = np.pad(images, ((0, 0), (ph, ph), (pw, pw)), 
+    padded_images = np.pad(images, ((0, 0), (ph, ph), (pw, pw)),
                            mode='constant', constant_values=0)
 
     # Perform the convolution
