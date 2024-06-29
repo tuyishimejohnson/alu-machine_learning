@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+A function that performs a convolution 
+on grayscale images with custom padding
+"""
 import numpy as np
+
 
 def convolve_grayscale_padding(images, kernel, padding):
     # Extract dimensions
