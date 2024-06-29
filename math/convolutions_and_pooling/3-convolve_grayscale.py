@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
+"""
+A function that performs a convolution on grayscale images
+"""
 import numpy as np
 
 def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
+
+    """
+    Returns: a numpy.ndarray containing the convolved images
+    """
     m, h, w = images.shape
     kh, kw = kernel.shape
     sh, sw = stride
@@ -25,13 +32,15 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     convolved_images = np.zeros((m, out_h, out_w))
 
     # Pad the images
-    padded_images = np.pad(images, ((0, 0), (ph, ph), (pw, pw)), mode='constant', constant_values=0)
+    padded_images = np.pad(images, ((0, 0), (ph, ph), (pw, pw)), 
+                           mode='constant', constant_values=0)
 
     # Perform the convolution
     for i in range(out_h):
         for j in range(out_w):
             slice_h = slice(i * sh, i * sh + kh)
             slice_w = slice(j * sw, j * sw + kw)
-            convolved_images[:, i, j] = np.sum(padded_images[:, slice_h, slice_w] * kernel, axis=(1, 2))
+            convolved_images[:, i, j] = np.sum(padded_images[:, slice_h,
+                                                              slice_w] * kernel, axis=(1, 2))
 
     return convolved_images
