@@ -10,7 +10,7 @@ import numpy as np
 def convolve_grayscale_padding(images, kernel, padding):
 
     """
-    returns: 
+    returns: numpy.ndarray containing the convolved images
     """
     # Extract dimensions
     m, h, w = images.shape
@@ -31,8 +31,8 @@ def convolve_grayscale_padding(images, kernel, padding):
     # Perform convolution
     for i in range(new_h - kh + 1):
         for j in range(new_w - kw + 1):
-            output[:, i, j] = (padded_images[:, 
-                                             i:i+kh, 
+            output[:, i, j] = (padded_images[:,
+                                             i:i+kh,
                                              j:j+kw] * kernel).sum(axis=(1, 2))
 
     return output
