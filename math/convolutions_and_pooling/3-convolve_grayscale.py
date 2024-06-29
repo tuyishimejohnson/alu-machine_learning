@@ -35,7 +35,8 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     # Pad the images
     padded_images = np.pad(images, ((0, 0),
                                     (ph, ph),
-                                    (pw, pw)), mode='constant', constant_values=0)
+                                    (pw, pw)),
+                                    mode='constant', constant_values=0)
 
     # Perform the convolution
     for i in range(out_h):
@@ -44,7 +45,7 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
             slice_w = slice(j * sw, j * sw + kw)
             convolved_images[:, i, j] = np.sum(padded_images[:,
                                                              slice_h,
-                                                              slice_w] 
+                                                              slice_w]
                                                               * kernel, axis=(1, 2))
 
     return convolved_images
