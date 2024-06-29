@@ -2,6 +2,7 @@
 
 import numpy as np
 
+
 def convolve(images, kernels, padding='same', stride=(1, 1)):
     m, h, w, c = images.shape
     kh, kw, _, nc = kernels.shape
