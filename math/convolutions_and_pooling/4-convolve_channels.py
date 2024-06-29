@@ -1,8 +1,18 @@
 #!/usr/bin/env python3
 
+
+"""
+A function  that performs a convolution on images with channels
+"""
+
 import numpy as np
 
+
 def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
+
+    """
+    Returns: a numpy.ndarray containing the convolved images
+    """
     m, h, w, c = images.shape
     kh, kw, kc = kernel.shape
     sh, sw = stride
