@@ -22,6 +22,6 @@ def convolve_grayscale_same(images, kernel):
             # Extract the region of interest
             region = padded_images[:, i:i+kh, j:j+kw]
             # Perform element-wise multiplication and summation
-            output[:, i, j] = np.sum(region * kernel[:, :, np.newaxis], axis=(1, 2))
+            output[:, i, j] = np.sum(region * kernel, axis=(1, 2))
 
     return output
