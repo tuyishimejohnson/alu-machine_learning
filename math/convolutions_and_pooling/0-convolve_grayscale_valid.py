@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 
+"""
+A function that performs a valid convolution on grayscale images
+"""
+
 import numpy as np
+
 
 def convolve_grayscale_valid(images, kernel):
     """
-    Performs a valid convolution on grayscale images.
-
-    Args:
-    images -- a numpy.ndarray with shape (m, h, w) containing multiple grayscale images
-    kernel -- a numpy.ndarray with shape (kh, kw) containing the kernel for the convolution
-
     Returns:
     A numpy.ndarray containing the convolved images
     """
