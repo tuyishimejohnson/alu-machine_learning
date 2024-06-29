@@ -1,36 +1,27 @@
 #!/usr/bin/env python3
-
 import numpy as np
 
 def convolve_grayscale_same(images, kernel):
-    """
-    Performs a same convolution on grayscale images.
-
-    Args:
-    images -- a numpy.ndarray with shape (m, h, w) containing multiple grayscale images
-    kernel -- a numpy.ndarray with shape (kh, kw) containing the kernel for the convolution
-
-    Returns:
-    A numpy.ndarray containing the convolved images
-    """
+    # Get dimensions of images and kernel
     m, h, w = images.shape
     kh, kw = kernel.shape
-
-    # Calculate padding
-    pad_h = kh // 2
-    pad_w = kw // 2
-    pad = ((0, 0), (pad_h, pad_h), (pad_w, pad_w))
-
-    # Pad images with zeros
-    padded_images = np.pad(images, pad, mode='constant')
-
-    # Initialize output array
+    
+    # Calculate the padding needed for height and width
+    pad_h = (kh - 1) // 2
+    pad_w = (kw - 1) // 2
+    
+    # Pad the images with zeros on all sides
+    padded_images = np.pad(images, ((0, 0), (pad_h, pad_h), (pad_w, pad_w)), mode='constant')
+    
+    # Initialize the output convolved images array
     output = np.zeros((m, h, w))
-
-    # Perform convolution
+    
+    # Perform convolution using two for loops
     for i in range(h):
         for j in range(w):
-            for img in range(m):
-                output[img, i, j] = np.sum(padded_images[img, i:i+kh, j:j+kw] * kernel)
-
+            # Extract the region of interest
+            region = padded_images[:, i:i+kh, j:j+kw]
+            # Perform element-wise multiplication and summation
+            output[:, i, j] = np.sum(region * kernel, axis=(1, 2))
+    
     return output
