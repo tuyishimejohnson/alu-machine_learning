@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 
+"""
+A function that performs pooling on images
+"""
+
 import numpy as np
 
 
 def pool(images, kernel_shape, stride, mode='max'):
+    """
+    Returns: a numpy.ndarray containing the pooled images
+    """
     m, h, w, c = images.shape
     kh, kw = kernel_shape
     sh, sw = stride
