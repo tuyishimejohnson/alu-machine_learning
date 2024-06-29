@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 
+"""
+A function that performs a convolution on images using multiple kernels
+"""
+
 import numpy as np
 
 
 def convolve(images, kernels, padding='same', stride=(1, 1)):
+
+    """
+    Returns: a numpy.ndarray containing the convolved images
+    """
     m, h, w, c = images.shape
     kh, kw, _, nc = kernels.shape
     sh, sw = stride
@@ -33,7 +41,7 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
                 slice_w = slice(j * sw, j * sw + kw)
                 image_slice = padded_images[:, slice_h, slice_w, :]
                 kernel = kernels[:, :, :, k]
-                output[:, i, j, k] = np.sum(image_slice * kernel, 
+                output[:, i, j, k] = np.sum(image_slice * kernel,
                                             axis=(1, 2, 3))
 
     return output
