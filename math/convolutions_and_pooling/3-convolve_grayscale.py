@@ -34,7 +34,7 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
 
     # Pad the images
     padded_images = np.pad(images, ((0, 0),
-                                    (ph, ph), 
+                                    (ph, ph),
                                     (pw, pw)), mode='constant', constant_values=0)
 
     # Perform the convolution
