@@ -16,7 +16,7 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     m, h, w, c = images.shape
     kh, kw, kc = kernel.shape
     sh, sw = stride
-    
+
     if padding == 'same':
         ph = ((h - 1) * sh + kh - h) // 2 + 1
         pw = ((w - 1) * sw + kw - w) // 2 + 1
@@ -31,7 +31,7 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     out_h = (padded_h - kh) // sh + 1
     out_w = (padded_w - kw) // sw + 1
 
-    padded_images = np.pad(images, 
+    padded_images = np.pad(images,
                            ((0, 0), (ph, ph), (pw, pw), (0, 0)),
                            mode='constant')
 
@@ -48,5 +48,5 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
                               horiz_start:horiz_end, :] * kernel,
                 axis=(1, 2, 3)
             )
-    
+
     return output
