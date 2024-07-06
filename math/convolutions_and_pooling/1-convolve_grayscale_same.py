@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-this function performs same convolution on grayscale images.
+A function that performs same convolution on grayscale images.
 """
 
 import numpy as np
@@ -9,10 +9,6 @@ import numpy as np
 def convolve_grayscale_same(images, kernel):
     """
     Performs same convolution on grayscale images.
-
-    Args:
-        images (numpy.ndarray): Input grayscale images with shape (m, h, w).
-        kernel (numpy.ndarray): Convolution kernel with shape (kh, kw).
 
     Returns:
         numpy.ndarray: Convolved images.
