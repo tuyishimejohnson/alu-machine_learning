@@ -12,15 +12,15 @@ def convolve_grayscale_valid(images, kernel):
     Returns:
     A numpy.ndarray containing the convolved images
     """
-    # Get dimensions of images and kernel
+    # We get the dimensions of images and kernel
     m, h, w = images.shape
     kh, kw = kernel.shape
 
-    # Calculate output dimensions
+    # We calculate  the output of dimensions
     output_h = h - kh + 1
     output_w = w - kw + 1
 
-    # Initialize output array
+    # We initialize the output array
     output = np.zeros((m, output_h, output_w))
 
     # Perform convolution
