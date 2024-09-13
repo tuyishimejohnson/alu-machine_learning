@@ -7,8 +7,7 @@ import numpy as np
 
 
 class Neuron:
-    def __init__(self, nx):
-        """
+    """
         Initializes a constructor with nx variable
         Parameters:
         nx: integer
@@ -16,7 +15,7 @@ class Neuron:
         A: activated output
         b: bias of neuron
         """
-
+    def __init__(self, nx):
         self.nx = nx
 
         if not isinstance(self.nx, int):
