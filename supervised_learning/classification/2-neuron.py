@@ -46,9 +46,6 @@ class Neuron:
 
     def forward_prop(self, X):
         """ A function to calculate the forward propagation """
-        self.X = np.ndarray(self.nx, m=None)
-
-    def set_A(self):
-        return 1/(1 + np.exp(-self.nx))
-
+        z = np.dot(self.W,X) + self.__b
+        return 1/(1 + np.exp(-z))
     
