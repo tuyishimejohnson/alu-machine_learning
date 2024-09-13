@@ -1,6 +1,5 @@
-""" #!/usr/bin/env python3 """
+#!/usr/bin/env python3
 import numpy as np
-
 
 class Neuron: 
     def __init__(self, nx):
