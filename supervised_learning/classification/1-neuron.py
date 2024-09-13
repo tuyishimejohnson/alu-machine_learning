@@ -27,11 +27,16 @@ class Neuron:
         self.__b = 0
         self.__A = 0
 
+    @property
     def weight(self):
+        """ Private getter for weight  """
         return self.__W
-
+    
+    @property
     def bias(self):
+        """ private getter for bias """
         return self.__b
-
+    @property
     def activation(self):
+        """ private getter for activation output """
         return self.__A
