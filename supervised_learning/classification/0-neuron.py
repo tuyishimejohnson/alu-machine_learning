@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-
 import numpy as np
 
 
 class Neuron:
     """ A class Neuron that defines a single neuron
      for binary classification """
+    
+
     def __init__(self, nx):
-        """ 
+        """
         Initializes a constructor with nx variable
         Parameters:
         nx: integer
         W: weight of neuron
         A: activated output
-        b: bias of neuron 
+        b: bias of neuron
         """
 
         self.nx = nx
