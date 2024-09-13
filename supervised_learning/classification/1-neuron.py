@@ -26,3 +26,12 @@ class Neuron:
         self.__W = np.random.randn(1, nx)
         self.__b = 0
         self.__A = 0
+
+    def weight(self):
+        return self.__W
+
+    def bias(self):
+        return self.__b
+
+    def activation(self):
+        return self.__A
