@@ -15,6 +15,8 @@ class Neuron:
         W: weight of neuron
         A: activated output
         b: bias of neuron
+        Raises TypeError
+        Raises ValueError
         """
     def __init__(self, nx):
         self.nx = nx
@@ -29,7 +31,7 @@ class Neuron:
 
     @property
     def W(self):
-        """ Private getter for weight  """
+        """ private getter for weight  """
         return self.__W
 
     @property
