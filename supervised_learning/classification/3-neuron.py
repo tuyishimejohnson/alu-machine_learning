@@ -62,6 +62,4 @@ class Neuron:
         float: The cost of the model.
         """
         m = Y.shape[1]
-        cost = -np.sum(Y * np.log(A)
-                        + (1 - Y)* np.log(1.0000001 - A)) / m
-        return cost
+        return -np.sum(Y * np.log(A) + (1 - Y)* np.log(1.0000001 - A)) / m
