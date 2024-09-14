@@ -66,6 +66,7 @@ class Neuron:
         return prediction, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
+        """ calculates the gradient descent on a neuron """
         m = X.shape[1]
         dZ = A - Y
         dW = np.dot(dZ, X.T) / m
