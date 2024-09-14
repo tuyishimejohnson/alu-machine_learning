@@ -51,12 +51,16 @@ class Neuron:
         return self.__A
 
     def cost(self, Y, A):
+        """
+        Calculates the cost of the model using logistic regression.
 
-        m = Y.shape[1]  # Number of examples
+        Parameters:
+        Y (numpy.ndarray): Correct labels for the input data with shape (1, m).
+        A (numpy.ndarray): Activated output of the neuron for each example with shape (1, m).
 
-        # Compute the cross-entropy loss for each example, ensuring numerical stability
-        # by using a small epsilon value to avoid log(0).
-        epsilon = 1e-7  # Small value to prevent division by zero in the log function
-        cost = -np.sum(Y * np.log(A + epsilon) + (1 - Y) * np.log(1 - A + epsilon)) / m
-
+        Returns:
+        float: The cost of the model.
+        """
+        m = Y.shape[1]
+        cost = -np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)) / m
         return cost
