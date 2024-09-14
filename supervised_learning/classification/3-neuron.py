@@ -56,6 +56,4 @@ class Neuron:
         Returns:
         float: The cost of the model.
         """
-        loss = - (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
-        cost = np.mean(loss)
-        return cost
+        return  -np.mean(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
