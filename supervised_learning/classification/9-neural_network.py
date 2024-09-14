@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Neural Network
+""" a class for Neural Network
 """
 
 import numpy as np
@@ -37,30 +37,30 @@ class NeuralNetwork:
     # getter functions
     @property
     def W1(self):
-        """Return weights vector for hidden layer"""
+        """ weights for hidden layer"""
         return self.__W1
 
     @property
     def b1(self):
-        """Return bias for hidden layer"""
+        """bias one """
         return self.__b1
 
     @property
     def A1(self):
-        """Return activated output for hidden layer"""
+        """ activated value one """
         return self.__A1
 
     @property
     def W2(self):
-        """Return weights vector for output neuron"""
+        """ weights for hidden layer two """
         return self.__W2
 
     @property
     def b2(self):
-        """Return bias for the output neuron"""
+        """ bias two """
         return self.__b2
 
     @property
     def A2(self):
-        """Return activated output for output neuron"""
+        """ activated value two """
         return self.__A2
