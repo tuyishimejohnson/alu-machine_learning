@@ -3,6 +3,7 @@
 """ A class Neuron that defines a single neuron
      for binary classification """
 
+from tabnanny import verbose
 import numpy as np
 import matplotlib.pyplot as plt
 
