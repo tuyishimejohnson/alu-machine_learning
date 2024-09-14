@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
+""" a function to convert a numeric vector into a matrix """
+
 import numpy as np
+
 
 def one_hot_encode(Y, classes):
     """
