@@ -66,6 +66,9 @@ class DeepNeuralNetwork:
         """
         self.__cache['A0'] = X
         for i in range(self.__L):
-            Zi = np.dot(self.__weights['W' + str(i + 1)], self.__cache['A' + str(i)]) + self.__weights['b' + str(i + 1)]
+            Wi = self.__weights['W' + str(i + 1)]
+            bi = self.__weights['b' + str(i + 1)]
+            Ai = self.__cache['A' + str(i)]
+            Zi = np.dot(Wi, Ai) + bi
             self.__cache['A' + str(i + 1)] = 1 / (1 + np.exp(-Zi))
         return self.__cache['A' + str(self.__L)], self.__cache
