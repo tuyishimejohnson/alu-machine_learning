@@ -34,44 +34,33 @@ class NeuralNetwork:
         self.b2 = 0
         self.A2 = 0
 
+    # getter functions
     @property
     def W1(self):
-        """
-        Getter for the weights vector of the hidden layer.
-        """
+        """Return weights vector for hidden layer"""
         return self.__W1
 
     @property
     def b1(self):
-        """
-        Getter for the bias of the hidden layer.
-        """
+        """Return bias for hidden layer"""
         return self.__b1
 
     @property
     def A1(self):
-        """
-        Getter for the activated output of the hidden layer.
-        """
+        """Return activated output for hidden layer"""
         return self.__A1
 
     @property
     def W2(self):
-        """
-        Getter for the weights vector of the output neuron.
-        """
+        """Return weights vector for output neuron"""
         return self.__W2
 
     @property
     def b2(self):
-        """
-        Getter for the bias of the output neuron.
-        """
+        """Return bias for the output neuron"""
         return self.__b2
 
     @property
     def A2(self):
-        """
-        Getter for the activated output of the output neuron.
-        """
+        """Return activated output for output neuron"""
         return self.__A2
