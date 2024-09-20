@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-""" A function that is used to calculate the
-    placeholder of two neural networks
-"""
-
 import tensorflow as tf
 
 
