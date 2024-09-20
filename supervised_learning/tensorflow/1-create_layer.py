@@ -17,8 +17,8 @@ def create_layer(prev, n, activation):
     tensor output
     """
     initializer = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    w = tf.Variable(initializer([prev.get_shape().as_list()[1], n]), name='w')
-    b = tf.Variable(tf.zeros([n]), name='b')
+    w = tf.Variable(initializer([prev.get_shape().as_list()[1], n]), name='weights')
+    b = tf.Variable(tf.zeros([n]), name='biases')
     layer = tf.add(tf.matmul(prev, w), b)
     if activation is not None:
         layer = activation(layer)
