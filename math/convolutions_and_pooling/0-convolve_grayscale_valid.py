@@ -4,7 +4,7 @@
 A function that performs a valid convolution on grayscale images
 """
 
-import numpy as np
+import numpy as np  # type: ignore
 
 
 def convolve_grayscale_valid(images, kernel):
