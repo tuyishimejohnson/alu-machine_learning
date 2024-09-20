@@ -10,6 +10,3 @@ def create_placeholders(nx, classes):
     with tf.Session() as session:
         x_data = classes
     return session.run(y, feed_dict={x: x_data})
-
-
-    
