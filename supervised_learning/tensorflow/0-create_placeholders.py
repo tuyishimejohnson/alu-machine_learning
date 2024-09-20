@@ -4,9 +4,7 @@ import tensorflow as tf
 
 
 def create_placeholders(nx, classes):
-    x = tf.placeholder("float", [None, 3])
-    y = x * nx
+    x = tf.placeholder(tf.float32, shape=[None, nx], name="x")
+    y = tf.placeholder(tf.float32, shape=[None, classes], name="y")
 
-    with tf.Session() as session:
-        x_data = classes
-    return session.run(y, feed_dict={x: x_data})
+    return x, y
