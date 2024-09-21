@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-""" A function that calculates the softmax cross-entropy 
+""" A function that calculates the softmax cross-entropy
 loss of a prediction
 """
 import tensorflow as tf
