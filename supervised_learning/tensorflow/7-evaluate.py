@@ -3,7 +3,6 @@
 """ A function that evaluates the output of a neural network
 """
 import tensorflow as tf
-import numpy as np
 
 
 def create_train_op(loss, alpha):
