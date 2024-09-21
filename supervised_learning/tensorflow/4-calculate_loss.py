@@ -6,7 +6,7 @@ loss of a prediction
 import tensorflow as tf
 
 
-def calculate_accuracy(y, y_pred):
+def calculate_loss(y, y_pred):
     """
     args:
     y: the placeholder for labels of input data
