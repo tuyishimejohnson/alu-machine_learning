@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" train"""
+"""A function that evaluates the output of a neural network"""
 
 
 import tensorflow as tf
@@ -12,7 +12,12 @@ forward_prop = __import__('2-forward_prop').forward_prop
 
 def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
           activations, alpha, iterations, save_path="/tmp/model.ckpt"):
-    """ train model"""
+    """
+    args:
+    X:numpy.ndarray containing the input data to evaluate
+    Y:numpy.ndarray containing the one-hot labels for X
+    save_path:the location to load the model from
+    """
     x, y = create_placeholders(X_train.shape[1], Y_train.shape[1])
     tf.add_to_collection('x', x)
     tf.add_to_collection('y', y)
