@@ -5,7 +5,7 @@
 import tensorflow as tf
 
 
-def create_train_op(loss, alpha):
+def evaluate(X, Y, save_path):
     """
     args:
     X:numpy.ndarray containing the input data to evaluate
