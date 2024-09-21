@@ -15,4 +15,5 @@ def calculate_accuracy(y, y_pred):
     returns:
     a tensor containing the loss of the prediction
     """
-    return tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=y_pred))
+    loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=y_pred))
+    return loss
