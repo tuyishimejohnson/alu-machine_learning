@@ -7,8 +7,8 @@ a neural network using gradient descent with L2 regularization
 import numpy as np
 
 
-def dropout_gradient_descent(Y, weights, 
-                             cache, alpha, 
+def dropout_gradient_descent(Y, weights,
+                             cache, alpha,
                              keep_prob, L):
     """
     Updates the weights of a neural network with
