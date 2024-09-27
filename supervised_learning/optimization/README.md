@@ -1,0 +1,1 @@
+# This project immerse into Machine learning optimisation. MLO is the process of iteratively improving the accuracy of a machine learning model, lowering the degree of error. Machine learning models learn to generalise and make predictions about new live data based on insight learned from training data.
