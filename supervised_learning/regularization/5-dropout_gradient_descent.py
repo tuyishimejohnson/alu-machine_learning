@@ -4,20 +4,15 @@
 a neural network using gradient descent with L2 regularization
 """
 
-
 import numpy as np
 
-def dropout_gradient_descent(Y, weights, cache, alpha, keep_prob, L):
-    """
-    Updates the weights of a neural network with Dropout regularization using gradient descent.
 
-    Parameters:
-    Y (np.ndarray): One-hot numpy.ndarray of shape (classes, m) that contains the correct labels for the data.
-    weights (dict): Dictionary of the weights and biases of the neural network.
-    cache (dict): Dictionary of the outputs and dropout masks of each layer of the neural network.
-    alpha (float): Learning rate.
-    keep_prob (float): Probability that a node will be kept.
-    L (int): Number of layers of the network.
+def dropout_gradient_descent(Y, weights, 
+                             cache, alpha, 
+                             keep_prob, L):
+    """
+    Updates the weights of a neural network with
+    Dropout regularization using gradient descent.
 
     Returns:
     None
