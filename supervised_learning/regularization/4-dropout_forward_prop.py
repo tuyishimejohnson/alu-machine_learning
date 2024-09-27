@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
-""" updates the weights and biases of
-a neural network using gradient descent with L2 regularization
+""" A function that conducts forward propagation using Dropout
 """
 
-import tensorflow as tf
+import numpy as np
 
 
 def dropout_forward_prop(X, weights, L, keep_prob):
     """
     args:
-    X:numpy.ndarray of shape (nx, m) containing the input data for the network
+    X:numpy.ndarray of shape (nx, m) containing
+     the input data for the network
     nx:number of input features
     m:number of data points
     weights:dictionary of the weights and biases of the neural network
