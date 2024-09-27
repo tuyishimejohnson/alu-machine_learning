@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-""" updates the weights and biases of
-a neural network using gradient descent with L2 regularization
+""" a function that updates the weights
+of a neural network with Dropout regularization
+using gradient descent
 """
 
 import numpy as np
