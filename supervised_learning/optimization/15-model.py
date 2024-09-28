@@ -1,152 +1,267 @@
 #!/usr/bin/env python3
 
-""" A function that creates a batch
-normalization layer for a neural network in tensorflow:
+""" A function that wraps everything together
+to create a model
 """
-import tensorflow as tf
+
+
 import numpy as np
+import tensorflow as tf
+
+
+def shuffle_data(X, Y):
+    """
+    Creates a batch normalization layer for a neural network in TensorFlow.
+
+    args:
+    prev :The activated output of the previous layer.
+    n:The number of nodes in the layer to be created.
+    activation (function): The activation
+    
+    Returns:
+    A tensor of the activated output for the layer.
+    """
+    m = X.shape[0]
+    shuffle = np.random.permutation(m)
+    X_shuffled = X[shuffle]
+    Y_shuffled = Y[shuffle]
+    return X_shuffled, Y_shuffled
+
+
+def calculate_loss(y, y_pred):
+    """
+    Method to calculate the cross-entropy loss
+    of a prediction
+    args:
+        y: input data type label in a placeholder
+        y_pred: type tensor that contains the DNN prediction
+
+    Returns:
+
+    """
+    loss = tf.losses.softmax_cross_entropy(y, y_pred)
+    return loss
+
+
+def calculate_accuracy(y, y_pred):
+    """
+    method to calculate the accuracy of a prediction in a DNN
+    args:
+        y: input data type label in a placeholder
+        y_pred: type tensor that contains the DNN prediction
+
+    Returns: Prediction accuracy
+
+    """
+    correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_pred, 1))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+    return accuracy
+
+
+def create_layer(prev, n, activation):
+    """
+    method to create a TF layer
+    args:
+        prev: tensor of the previous layer
+        n: n nodes created
+        activation: activation function
+
+    Returns: Layer created with shape n
+
+    """
+    initializer = tf.contrib.layers.variance_scaling_initializer(
+        mode="FAN_AVG"
+    )
+    layer = tf.layers.Dense(
+        units=n, activation=activation,
+        kernel_initializer=initializer, name="layer"
+    )
+    return layer(prev)
 
 
 def create_batch_norm_layer(prev, n, activation):
     """
-    Creates a batch normalization layer for a neural network in TensorFlow.
+    Function that normalized a batch in a DNN with Tf
+    Args:
+        prev: the activated output of the previous layer
+        n: number of nodes in the layer to be created
+        activation: activation function that should be used
+                    on the output of the layer
 
-    Parameters:
-    prev (tf.Tensor): The activated output of the previous layer.
-    n (int): The number of nodes in the layer to be created.
-    activation (function): The activation
-    function that should be used on the output of the layer.
+    Returns: tensor of the activated output for the layer
 
-    Returns:
-    tf.Tensor: A tensor of the activated output for the layer.
     """
-    dense_layer = tf.layers.Dense(
-        units=n,
-        kernel_initializer=tf.contrib.layers.variance_scaling_initializer(
-            mode="FAN_AVG"
-        )
-    )(prev)
+    init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
+    x = tf.layers.Dense(units=n, kernel_initializer=init)
+    x_prev = x(prev)
+    scale = tf.Variable(tf.constant(1.0, shape=[n]), name="gamma")
+    mean, variance = tf.nn.moments(x_prev, axes=[0])
+    offset = tf.Variable(tf.constant(0.0, shape=[n]), name="beta")
+    variance_epsilon = 1e-8
 
-    mean, variance = tf.nn.moments(dense_layer, axes=[0])
-
-    gamma = tf.Variable(tf.ones([n]), trainable=True, name='gamma')
-    beta = tf.Variable(tf.zeros([n]), trainable=True, name='beta')
-
-    epsilon = 1e-8
-    batch_norm = tf.nn.batch_normalization(
-        dense_layer, mean, variance, beta, gamma, epsilon
+    normalization = tf.nn.batch_normalization(
+        x_prev,
+        mean,
+        variance,
+        offset,
+        scale,
+        variance_epsilon,
     )
+    if activation is None:
+        return normalization
+    return activation(normalization)
 
-    return activation(batch_norm)
 
-def model(Data_train, Data_valid,
-          layers, activations, alpha=0.001,
-          beta1=0.9, beta2=0.999, epsilon=1e-8,
-          decay_rate=1, batch_size=32, epochs=5,
-          save_path='/tmp/model.ckpt'):
+def forward_prop(x, layer_sizes=[], activations=[]):
     """
-    Builds, trains, and saves a neural network model in TensorFlow
-    using Adam optimization, mini-batch gradient descent,
-    learning rate decay, and batch normalization.
+    args:
+        x: Input data (placeholder)
+        layer_sizes: type list are the n nodes inside the layers
+        activations: type list with the activation function per layer
 
-    Parameters:
-    Data_train (tuple): Training inputs and labels.
-    Data_valid (tuple): Validation inputs and labels.
-    layers (list): Number of nodes in each layer of the network.
-    activations (list): Activation functions used for each layer of the network.
-    alpha (float): Learning rate.
-    beta1 (float): Weight for the first moment of Adam Optimization.
-    beta2 (float): Weight for the second moment of Adam Optimization.
-    epsilon (float): Small number used to avoid division by zero.
-    decay_rate (float): Decay rate for inverse time decay of the learning rate.
-    batch_size (int): Number of data points in a mini-batch.
-    epochs (int): Number of times the training
-    should pass through the whole dataset.
-    save_path (str): Path where the model should be saved to.
+    Returns: Prediction of a DNN
 
-    Returns:
-    str: The path where the model was saved.
     """
-    X_train, Y_train = Data_train
-    X_valid, Y_valid = Data_valid
-    m, n = X_train.shape
+    layer = create_batch_norm_layer(x, layer_sizes[0], activations[0])
+    for i in range(1, len(layer_sizes)):
+        if i != len(layer_sizes) - 1:
+            layer = create_batch_norm_layer(
+                layer, layer_sizes[i], activations[i]
+            )
+        else:
+            layer = create_layer(layer, layer_sizes[i], activations[i])
+    return layer
 
-    # Define placeholders
-    X = tf.placeholder(tf.float32, shape=(None, n), name='X')
-    Y = tf.placeholder(tf.float32, shape=(None, Y_train.shape[1]), name='Y')
-    global_step = tf.Variable(0, trainable=False, name='global_step')
 
-    # Build the neural network
-    A = X
-    for i in range(len(layers)):
-        A = create_batch_norm_layer(A, layers[i], activations[i])
+def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
+    """
+    args:
+        loss:loss of the network
+        alpha:learning rate
+        beta1:weight used for the first moment
+        beta2:weight used for the second moment
+        epsilon:small number to avoid division by zero
 
-    # Define the loss function
-    loss = tf.losses.softmax_cross_entropy(Y, A)
+    Returns: Adam optimization operation
 
-    # Define the learning rate decay
-    learning_rate = tf.train.inverse_time_decay(
-        alpha, global_step, decay_steps=1, decay_rate=decay_rate, staircase=True
-    )
-
-    # Define the optimizer
+    """
     optimizer = tf.train.AdamOptimizer(
-        learning_rate=learning_rate, beta1=beta1, beta2=beta2, epsilon=epsilon
+        alpha, beta1, beta2, epsilon
+    ).minimize(loss)
+    return optimizer
+
+
+def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
+    """
+    args:
+        alpha: original learning rate
+        decay_rate: weight used to determine the rate at which alpha will decay
+        global_step: number of passes of gradient descent that have elapsed
+        decay_step: number of passes of gradient descent that should occur
+                    before alpha is decayed further
+
+    Returns:  learning rate decay operation
+
+    """
+    LRD = tf.train.inverse_time_decay(
+        alpha, global_step, decay_step, decay_rate, staircase=True
     )
+    return LRD
 
-    # Define the training operation
-    train_op = optimizer.minimize(loss, global_step=global_step)
 
-    # Define the accuracy
-    correct_prediction = tf.equal(tf.argmax(A, 1), tf.argmax(Y, 1))
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+def model(
+    Data_train,
+    Data_valid,
+    layers,
+    activations,
+    alpha=0.001,
+    beta1=0.9,
+    beta2=0.999,
+    epsilon=1e-8,
+    decay_rate=1,
+    batch_size=32,
+    epochs=5,
+    save_path="/tmp/model.ckpt",
+):
+    """
+    Returns:path where the model was saved
+    """
+    nx = Data_train[0].shape[1]
+    classes = Data_train[1].shape[1]
 
-    # Initialize variables
+    (X_train, Y_train) = Data_train
+    (X_valid, Y_valid) = Data_valid
+
+    x = tf.placeholder(tf.float32, shape=[None, nx], name="x")
+    y = tf.placeholder(tf.float32, shape=[None, classes], name="y")
+
+    tf.add_to_collection("x", x)
+    tf.add_to_collection("y", y)
+
+    y_pred = forward_prop(x, layers, activations)
+    tf.add_to_collection("y_pred", y_pred)
+
+    loss = calculate_loss(y, y_pred)
+    tf.add_to_collection("loss", loss)
+
+    accuracy = calculate_accuracy(y, y_pred)
+    tf.add_to_collection("accuracy", accuracy)
+
+    global_step = tf.Variable(0)
+    alpha_op = learning_rate_decay(alpha, decay_rate, global_step, 1)
+    train_op = create_Adam_op(loss, alpha_op, beta1, beta2, epsilon)
+    tf.add_to_collection("train_op", train_op)
+
     init = tf.global_variables_initializer()
-
-    # Create a saver
     saver = tf.train.Saver()
 
     with tf.Session() as sess:
         sess.run(init)
+        m = X_train.shape[0]
+        if (m % batch_size) == 0:
+            num_minibatches = int(m / batch_size)
+            check = 1
+        else:
+            num_minibatches = int(m / batch_size) + 1
+            check = 0
 
-        for epoch in range(epochs):
-            # Shuffle the training data
-            permutation = np.random.permutation(m)
-            X_train_shuffled = X_train[permutation]
-            Y_train_shuffled = Y_train[permutation]
+        for epoch in range(epochs + 1):
+            feed_train = {x: X_train, y: Y_train}
+            feed_valid = {x: X_valid, y: Y_valid}
+            train_cost = sess.run(loss, feed_dict=feed_train)
+            train_accuracy = sess.run(accuracy, feed_dict=feed_train)
+            valid_cost = sess.run(loss, feed_dict=feed_valid)
+            valid_accuracy = sess.run(accuracy, feed_dict=feed_valid)
 
-            # Mini-batch gradient descent
-            for i in range(0, m, batch_size):
-                end = i + batch_size
-                X_batch = X_train_shuffled[i:end]
-                Y_batch = Y_train_shuffled[i:end]
+            print("After {} epochs:".format(epoch))
+            print("\tTraining Cost: {}".format(train_cost))
+            print("\tTraining Accuracy: {}".format(train_accuracy))
+            print("\tValidation Cost: {}".format(valid_cost))
+            print("\tValidation Accuracy: {}".format(valid_accuracy))
 
-                sess.run(train_op, feed_dict={X: X_batch, Y: Y_batch})
+            if epoch < epochs:
+                Xs, Ys = shuffle_data(X_train, Y_train)
 
-                if i % 100 == 0:
-                    step_cost, step_accuracy = sess.run(
-                        [loss, accuracy], feed_dict={X: X_batch, Y: Y_batch}
-                    )
-                    print(f"\tStep {i // batch_size}:")
-                    print(f"\t\tCost: {step_cost}")
-                    print(f"\t\tAccuracy: {step_accuracy}")
+                for step_number in range(num_minibatches):
+                    start = step_number * batch_size
+                    end = (step_number + 1) * batch_size
+                    if check == 0 and step_number == num_minibatches - 1:
+                        x_minbatch = Xs[start::]
+                        y_minbatch = Ys[start::]
+                    else:
+                        x_minbatch = Xs[start:end]
+                        y_minbatch = Ys[start:end]
 
-            # Calculate the cost and accuracy on the entire training set
-            train_cost, train_accuracy = sess.run(
-                [loss, accuracy], feed_dict={X: X_train, Y: Y_train}
-            )
-            valid_cost, valid_accuracy = sess.run(
-                [loss, accuracy], feed_dict={X: X_valid, Y: Y_valid}
-            )
+                    feed_mini = {x: x_minbatch, y: y_minbatch}
+                    sess.run(train_op, feed_dict=feed_mini)
 
-            print(f"After {epoch + 1} epochs:")
-            print(f"\tTraining Cost: {train_cost}")
-            print(f"\tTraining Accuracy: {train_accuracy}")
-            print(f"\tValidation Cost: {valid_cost}")
-            print(f"\tValidation Accuracy: {valid_accuracy}")
-
-        # Save the model
-        save_path = saver.save(sess, save_path)
-
+                    if ((step_number + 1) % 100 == 0) and (step_number != 0):
+                        step_cost = sess.run(loss, feed_dict=feed_mini)
+                        step_accuracy = sess.run(accuracy, feed_dict=feed_mini)
+                        print("\tStep {}:".format(step_number + 1))
+                        print("\t\tCost: {}".format(step_cost))
+                        print("\t\tAccuracy: {}".format(step_accuracy))
+            sess.run(tf.assign(global_step, global_step + 1))
+            save_path = saver.save(sess, save_path)
     return save_path
