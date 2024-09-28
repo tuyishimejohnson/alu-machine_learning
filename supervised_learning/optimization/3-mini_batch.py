@@ -6,6 +6,7 @@ network model using mini-batch gradient descent
 
 import numpy as np
 import tensorflow as tf
+shuffle_data = __import__('2-shuffle_data').shuffle_data
 
 
 def train_mini_batch(X_train, Y_train, X_valid,
@@ -17,7 +18,6 @@ def train_mini_batch(X_train, Y_train, X_valid,
     Returns:
     str: The path where the model was saved.
     """
-    shuffle_data = __import__('2-shuffle_data').shuffle_data
 
     # Load the model
     saver = tf.train.import_meta_graph(load_path + '.meta')
