@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-""" A function that updates
-a variable using the RMSProp optimization algorithm
+""" A function that creates the training operation for
+a neural network in tensorflow using the Adam optimization algorithm
 """
 
 import tensorflow as tf
