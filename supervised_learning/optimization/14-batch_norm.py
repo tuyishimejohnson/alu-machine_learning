@@ -19,20 +19,20 @@ activation is the activation function that should be used on the output of the l
     dense_layer = tf.layers.Dense(
         units=n,
         kernel_initializer=tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    )
-    
-    Z = dense_layer(prev)
-    
-    mean, variance = tf.nn.moments(Z, axes=[0])
-    
+    )(prev)
+
+    # Compute mean and variance for batch normalization
+    mean, variance = tf.nn.moments(dense_layer, axes=[0])
+
+    # Initialize trainable gamma and beta parameters
     gamma = tf.Variable(tf.ones([n]), trainable=True, name='gamma')
     beta = tf.Variable(tf.zeros([n]), trainable=True, name='beta')
-    
-    Z_batch_norm = tf.nn.batch_normalization(
-        Z, mean, variance, beta, gamma, epsilon=1e-8
+
+    # Perform batch normalization
+    epsilon = 1e-8
+    batch_norm = tf.nn.batch_normalization(
+        dense_layer, mean, variance, beta, gamma, epsilon
     )
-    
-    if activation is not None:
-        return activation(Z_batch_norm)
-    else:
-        return Z_batch_norm
+
+    # Apply the activation function
+    return activation(batch_norm)
