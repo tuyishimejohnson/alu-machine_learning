@@ -3,13 +3,10 @@
 """ A function that conducts forward propagation using Dropout
 """
 
-import tensorflow as tf
-shuffle_data = __import__('2-shuffle_data').shuffle_data
+import numpy as np
 
 
-def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
-                     epochs=5, load_path="/tmp/model.ckpt",
-                     save_path="/tmp/model.ckpt"):
+def dropout_forward_prop(X, weights, L, keep_prob):
     """
     args:
     X:numpy.ndarray of shape (nx, m) containing
@@ -22,39 +19,29 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
     All layers except the last should use the tanh activation function
     The last layer should use the softmax activation function
     """
-    with tf.Session() as sess:
-        saver = tf.train.import_meta_graph(load_path + '.meta')
-        saver.restore(sess, load_path)
-        x = tf.get_collection('x')[0]
-        y = tf.get_collection('y')[0]
-        train_op = tf.get_collection('train_op')[0]
-        accuracy = tf.get_collection('accuracy')[0]
-        loss = tf.get_collection('loss')[0]
-        size = X_train.shape[0] // batch_size
-        if X_train.shape[0] % batch_size != 0:
-            size += 1
-        for i in range(epochs + 1):
-            cost_t, acc_t = sess.run([loss, accuracy],
-                                     feed_dict={x: X_train, y: Y_train})
-            cost_v, acc_v = sess.run([loss, accuracy],
-                                     feed_dict={x: X_valid, y: Y_valid})
-            print("After {} epochs:".format(i))
-            print("\tTraining Cost: {}".format(cost_t))
-            print("\tTraining Accuracy: {}".format(acc_t))
-            print("\tValidation Cost: {}".format(cost_v))
-            print("\tValidation Accuracy: {}".format(acc_v))
-            if i < epochs:
-                x_shuffled, y_shuffled = shuffle_data(X_train, Y_train)
-                for i in range(size):
-                    start = i * batch_size
-                    end = start + batch_size
-                    x_mini = x_shuffled[start:end]
-                    y_mini = y_shuffled[start:end]
-                    sess.run(train_op, feed_dict={x: x_mini, y: y_mini})
-                    if (i + 1) % 100 == 0 and i > 0:
-                        cost, acc = sess.run([loss, accuracy],
-                                             feed_dict={x: x_mini, y: y_mini})
-                        print("\tStep {}:".format(i + 1))
-                        print("\t\tCost: {}".format(cost))
-                        print("\t\tAccuracy: {}".format(acc))
-        return saver.save(sess, save_path)
+    cache = {}
+    cache['A0'] = X
+
+    for i in range(1, L + 1):
+        W = weights['W' + str(i)]
+        b = weights['b' + str(i)]
+        A_prev = cache['A' + str(i - 1)]
+
+        Z = np.dot(W, A_prev) + b
+
+        if i == L:
+            # Softmax activation for the last layer
+            t = np.exp(Z - np.max(Z, axis=0, keepdims=True))
+            A = t / np.sum(t, axis=0, keepdims=True)
+        else:
+            # Tanh activation for hidden layers
+            A = np.tanh(Z)
+            # Dropout mask
+            D = np.random.rand(A.shape[0], A.shape[1]) < keep_prob
+            A = np.multiply(A, D)
+            A /= keep_prob
+            cache['D' + str(i)] = D
+
+        cache['A' + str(i)] = A
+
+    return cache
