@@ -17,7 +17,7 @@ def shuffle_data(X, Y):
     prev :The activated output of the previous layer.
     n:The number of nodes in the layer to be created.
     activation (function): The activation
-    
+
     Returns:
     A tensor of the activated output for the layer.
     """
