@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """ A function that conducts forward propagation using Dropout
 """
 
@@ -21,27 +20,19 @@ def dropout_forward_prop(X, weights, L, keep_prob):
     """
     cache = {}
     cache['A0'] = X
-
     for i in range(1, L + 1):
         W = weights['W' + str(i)]
         b = weights['b' + str(i)]
-        A_prev = cache['A' + str(i - 1)]
-
-        Z = np.dot(W, A_prev) + b
-
-        if i == L:
-            # Softmax activation for the last layer
-            t = np.exp(Z - np.max(Z, axis=0, keepdims=True))
-            A = t / np.sum(t, axis=0, keepdims=True)
-        else:
-            # Tanh activation for hidden layers
+        A = cache['A' + str(i - 1)]
+        Z = np.matmul(W, A) + b
+        if i < L:
             A = np.tanh(Z)
-            # Dropout mask
-            D = np.random.rand(A.shape[0], A.shape[1]) < keep_prob
+            D = np.random.rand(A.shape[0], A.shape[1])
+            D = np.where(D < keep_prob, 1, 0)
             A = np.multiply(A, D)
-            A /= keep_prob
+            A = A / keep_prob
             cache['D' + str(i)] = D
-
+        else:
+            A = np.exp(Z) / np.sum(np.exp(Z), axis=0, keepdims=True)
         cache['A' + str(i)] = A
-
     return cache
