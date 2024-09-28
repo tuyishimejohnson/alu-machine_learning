@@ -3,8 +3,6 @@
 """ A function that updates the learning rate using inverse time decay in numpy
 """
 
-
-
 def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
     """
     args:
