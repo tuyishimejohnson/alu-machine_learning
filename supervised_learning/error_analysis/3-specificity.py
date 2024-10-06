@@ -6,7 +6,7 @@ A function that that calculates the specificity for each class in a confusion ma
 import numpy as np
 
 
-def precision(confusion):
+def specificity(confusion):
     """
     confusion: confusion numpy.ndarray of shape (classes, classes)
     where row indices represent the correct labels and column indices
@@ -23,5 +23,5 @@ def precision(confusion):
     false_pos = np.sum(confusion, axis=0) - true_pos
 
     true_neg = np.sum(confusion) - (true_pos + false_neg + false_pos)
-    
+
     return true_neg / (true_neg + false_pos)
