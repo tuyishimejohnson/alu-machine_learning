@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-A function that that calculates the specificity for each class in a confusion matrix:
+A function that that calculates the
+specificity for each class in a confusion matrix:
 """
 
 import numpy as np
@@ -14,7 +15,8 @@ def specificity(confusion):
     classes: number of classes
 
     Returns:
-    a numpy.ndarray of shape (classes,) containing the specificity of each class
+    a numpy.ndarray of shape (classes,) containing
+    the specificity of each class
     """
     true_pos = np.diag(confusion)
 
