@@ -13,7 +13,7 @@ def sensitivity(confusion):
 
     Parameters:
     confusion (np.ndarray): Confusion matrix of shape
-    (classes, classes) where row indices represent the 
+    (classes, classes) where row indices represent the
     correct labels and column indices represent the predicted labels.
 
     Returns:
@@ -24,5 +24,5 @@ def sensitivity(confusion):
     false_negatives = np.sum(confusion, axis=1) - true_positives
 
     sensitivity = true_positives / (true_positives + false_negatives)
-    
+
     return sensitivity
