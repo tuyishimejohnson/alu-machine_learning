@@ -4,7 +4,7 @@ A function that that calculates the F1
 score of a confusion matrix
 """
 
-sensitivity = __import__("1-sensivity").sensitivity
+sensitivity = __import__('1-sensitivity').sensitivity
 precision = __import__('2-precision').precision
 
 
@@ -25,6 +25,4 @@ def f1_score(confusion):
 
     prec = precision(confusion)
 
-    f1 = 2 * (prec * recall) / (prec + recall)
-    
-    return f1
+    return 2 * (prec * recall) / (prec + recall)
