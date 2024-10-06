@@ -4,7 +4,6 @@ A function that that calculates the F1
 score of a confusion matrix
 """
 
-import numpy as np
 sensitivity = __import__("1-sensivity").sensitivity
 precision = __import__('2-precision').precision
 
