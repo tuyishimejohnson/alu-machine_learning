@@ -15,3 +15,5 @@ def from_file(filename, delimiter):
     the loaded pd.DataFrame
     """
     return pd.read_csv(filename, delimiter=delimiter)
+
+print(from_file("pipeline/pandas/datasets/coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv", ","))
