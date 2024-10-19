@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """ Index the Timestamp """
 from_file = __import__('2-from_file').from_file
 
