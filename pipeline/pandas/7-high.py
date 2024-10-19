@@ -1,4 +1,4 @@
-""" #!/usr/bin/env python3 """
+#!/usr/bin/env python3
 
 """  Sort dataframe by 'High' column in descending order """
 
