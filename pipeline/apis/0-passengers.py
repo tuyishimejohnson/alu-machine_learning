@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
+
 """
 Create Confusion matrix
 """
 
 import requests
-from bs4 import BeautifulSoup
-from io import BytesIO
 
 
 def availableShips(passengerCount):
