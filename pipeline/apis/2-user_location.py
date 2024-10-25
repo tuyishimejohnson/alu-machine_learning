@@ -10,13 +10,6 @@ from datetime import datetime
 def get_user_location(url):
     """
     Retrieves the location of a specified GitHub user.
-
-    Args:
-        url (str): The GitHub API URL for the user.
-
-    Returns:
-        str: The user's location if available, or "Not found" if the user does not exist,
-             or a rate limit reset message if rate limit is exceeded.
     """
     response = requests.get(url)
     
