@@ -2,20 +2,21 @@
 import requests
 
 def availableShips(passengerCount):
-    """
-    Returns the list of ships that can hold a given number of passengers.
-    list: A list of ship names that can hold the given number of passengers.
-    """
-    url = "https://swapi.dev/api/starships/"
+    url = 'https://swapi.dev/api/starships/'
     ships = []
-
+    
     while url:
         response = requests.get(url)
         data = response.json()
         for ship in data['results']:
-            passengers = ship['passengers']
-            if passengers.isdigit() and int(passengers) >= passengerCount:
-                ships.append(ship['name'])
-        url = data['next']
-
+            # Some ships may have unknown or non-numeric values in the passengers field, so we need to handle that
+            try:
+                passengers = ship['passengers'].replace(',', '')  # Remove any commas from the string
+                if int(passengers) >= passengerCount:
+                    ships.append(ship['name'])
+            except (ValueError, TypeError):
+                continue
+        
+        url = data['next']  # Move to the next page if available
+    
     return ships
