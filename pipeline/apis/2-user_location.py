@@ -11,8 +11,9 @@ import time
 
 def get_user_location(api_url):
     """
-    params:
-    api_url: The API URL for the user
+    Fetch and print the location of a GitHub user.
+
+    :param api_url: The API URL for the user
     """
     try:
         response = requests.get(api_url)
