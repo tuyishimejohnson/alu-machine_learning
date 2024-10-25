@@ -4,9 +4,9 @@
 """
 
 
-import sys
 import requests
-import time
+import sys
+from datetime import datetime
 
 
 def get_user_location(api_url):
