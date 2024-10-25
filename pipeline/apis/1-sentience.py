@@ -11,8 +11,8 @@ import requests
 def sentientPlanets():
     """
     Returns:
-        list: List of names of home planets of all sentient species. 
-              If no planet is found for a species, "unknown" is used instead.
+        list: List of names of home planets
+        of all sentient species.
     """
     url_link = 'https://swapi.dev/api/species/'
     planets = set()
