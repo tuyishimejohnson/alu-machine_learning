@@ -1,41 +1,49 @@
 #!/usr/bin/env python3
 """
-    script that prints the location of a specific user:
+Script to print the location of a GitHub user.
 """
 
-
 import requests
-import time
+import sys
 from datetime import datetime
 
-
-def main(url):
+def get_user_location(url):
     """
-    - The user is passed as first argument of the script
-    with the full API URL, example: ./2-user_location.py
-    https://api.github.com/users/holbertonschool
-    - If the user doesn’t exist, print Not found
-    - If the status code is 403, print Reset in X min where X
-    is the number of minutes from now and the value of
-    X-Ratelimit-Reset
-    - Your code should not be executed when the file is
-    imported (you should use if __name__ == '__main__':)
+    Retrieves the location of a specified GitHub user.
 
+    Args:
+        url (str): The GitHub API URL for the user.
+
+    Returns:
+        str: The user's location if available, or "Not found" if the user does not exist,
+             or a rate limit reset message if rate limit is exceeded.
     """
     response = requests.get(url)
-
-    if response.status_code == 404:
-        print("Not found")
+    
+    if response.status_code == 200:
+        # Success: retrieve and return location if available
+        data = response.json()
+        return data.get('location', "Not found")
+    
+    elif response.status_code == 404:
+        # User not found
+        return "Not found"
+    
     elif response.status_code == 403:
-        reset_timestamp = int(response.headers["X-Ratelimit-Reset"])
-        current_timestamp = int(time.time())
-        reset_in_minutes = (reset_timestamp - current_timestamp) // 60
-        print("Reset in {} min".format(reset_in_minutes))
-    else:
-        print(response.json()["location"])
+        # Rate limit exceeded
+        reset_time = int(response.headers.get('X-Ratelimit-Reset', 0))
+        reset_in_minutes = (datetime.fromtimestamp(reset_time) - datetime.now()).total_seconds() // 60
+        return f"Reset in {int(reset_in_minutes)} min"
+
+    # For other errors, return a generic message
+    return "Error retrieving data"
 
 
-if __name__ == "__main__":
-    import sys
-
-    main(sys.argv[1])
+if __name__ == '__main__':
+    # Check that the URL argument is provided
+    if len(sys.argv) != 2:
+        print("Usage: ./2-user_location.py <GitHub API user URL>")
+        sys.exit(1)
+    
+    url = sys.argv[1]
+    print(get_user_location(url))
