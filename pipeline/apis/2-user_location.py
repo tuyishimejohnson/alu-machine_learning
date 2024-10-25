@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-    script that prints the location of a specific user:
+    script that prints the location
+    of a specific user:
 """
 
 
