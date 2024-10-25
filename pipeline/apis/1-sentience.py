@@ -10,8 +10,11 @@ import requests
 
 def sentientPlanets():
     """
+    Arguments:
+    passengerCount: number of passengers
+
     Returns:
-        list: List of names of home planets
+    If no ship available, return an empty list.
     """
     url_link = 'https://swapi.dev/api/species/'
     planets = set()
@@ -40,8 +43,6 @@ def sentientPlanets():
                         print(f"Failed to retrieve homeworld data for {species['name']}")
                 else:
                     planets.add("unknown")
-
-        # Move to the next page if available
         url_link = data['next']
 
     return list(planets)
