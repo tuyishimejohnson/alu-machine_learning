@@ -5,13 +5,11 @@ A method that returns the list of names
 of the home planets of all sentient species.
 """
 
+
 import requests
 
 def sentientPlanets():
     """
-    Method to retrieve the list of names of home planets for all sentient species
-    from the SWAPI (Star Wars API).
-    
     Returns:
         list: List of names of home planets of all sentient species. 
               If no planet is found for a species, "unknown" is used instead.
