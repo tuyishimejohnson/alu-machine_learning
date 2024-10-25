@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-Prints the location of a specific user
+Prints the location of a user
 '''
 
 
