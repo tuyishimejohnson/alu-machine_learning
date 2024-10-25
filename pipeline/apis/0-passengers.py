@@ -32,5 +32,5 @@ def availableShips(passengerCount):
                 continue
 
         url = data['next']  # Move to the next page if available
-    
+
     return ships
