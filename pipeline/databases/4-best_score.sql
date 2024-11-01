@@ -1,3 +1,3 @@
 -- All records with a score greater than or equal to 10
 
-SELECT * FROM second_table WHERE score >= 10 ORDER BY score DESC;
+SELECT score FROM second_table WHERE score >= 10 ORDER BY score DESC;
