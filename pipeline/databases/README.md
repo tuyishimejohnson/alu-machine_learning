@@ -1,0 +1,1 @@
+# This directory is about interacting with database especially SQL and NoSQL databases.
