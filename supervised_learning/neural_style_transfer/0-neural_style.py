@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Defines class NST that performs tasks for neural style transfer
+A class NST that performs tasks for neural style transfer
 """
 
 import numpy as np
@@ -24,10 +24,9 @@ class NST:
         Class constructor for Neural Style Transfer class
 
         parameters:
-            style_image [numpy.ndarray with shape (h, w, 3)]:
+            style_image (h, w, 3):
                 image used as style reference
             content_image [numpy.ndarray with shape (h, w, 3)]:
-                image used as content reference
             alpha [float]: weight for content cost
             beta [float]: weight for style cost
 
@@ -66,19 +65,10 @@ class NST:
     @staticmethod
     def scale_image(image):
         """
-        Rescales an image such that its pixels values are between 0 and 1
-            and its largest side is 512 pixels
-
         parameters:
-            image [numpy.ndarray of shape (h, w, 3)]:
-                 image to be rescaled
-
-        Scaled image should be tf.tensor with shape (1, h_new, w_new, 3)
-            where max(h_new, w_new) is 512 and
-            min(h_new, w_new) is scaled proportionately
-        Image should be resized using bicubic interpolation.
-        Image's pixels should be rescaled from range [0, 255] to [0, 1].
-
+        image - a numpy.ndarray of shape (h, w, 3)
+        raise a TypeError with the message image must be a numpy.ndarray 
+        with shape (h, w, 3)
         returns:
             the scaled image
         """
