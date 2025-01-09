@@ -92,7 +92,7 @@ class NST:
         rescaled = resized / 255
         rescaled = tf.clip_by_value(rescaled, 0, 1)
         return (rescaled)
-    
+
     def load_model(self):
         '''
             Update the class NST to load the model for neural style transfer
