@@ -63,7 +63,6 @@ class NST:
         self.beta = beta
         self.load_model()
         self.generate_features()
-        self.style_cost()
 
     @staticmethod
     def scale_image(image):
@@ -170,33 +169,39 @@ class NST:
         self.gram_style_features = gram_style_features
         self.content_feature = content_feature
 
-    def layer_style_cost(self, style_output, gram_target):
+    def layer_style_cost(self,
+                         style_output,
+                         gram_target):
         """
-
-        calculate the style cost for a single layer
+        Calculates the style cost for a single layer
+        returns:
+        Layer's style cost
         """
         if not (isinstance(style_output, tf.Tensor) or
                 isinstance(style_output, tf.Variable)) or len(
                     style_output.shape) != 4:
-            raise TypeError("style_output must be a tensor of rank 4")
+            raise TypeError('style_output must be a tensor of rank 4')
 
-        one, h, w, c = style_output.shape
-        if not isinstance(gram_target, (tf.Tensor, tf.Variable)) or \
-           len(gram_target.shape) is not 3 or gram_target.shape != (1, c, c):
+        _, _, _, c = style_output.shape
+
+        if not (isinstance(gram_target, tf.Tensor) or
+                isinstance(gram_target,
+                           tf.Variable)) or gram_target.shape != (1, c, c):
             raise TypeError(
-                "gram_target must be a tensor of shape [1, {}, {}]".format(
-                    c, c))
-        gram_style = self.gram_matrix(style_output)
-        diff = tf.reduce_mean(tf.square(gram_style - gram_target))
-        return diff
-    
-    def style_cost(self, style_outputs):
-        '''
-        Calculates the style cost for the generated image
+                'gram_target must be a tensor of shape [1, {}, {}]'
+                .format(c, c))
 
+        gram_style_output = self.gram_matrix(style_output)
+
+        return tf.reduce_mean(
+            tf.square(gram_style_output - gram_target))
+
+    def style_cost(self, style_outputs):
+        """
+        Calculates the style cost for the generated image
         Return:
-            The style cost
-        '''
+        The style cost
+        """
         length = len(self.style_layers)
 
         if not isinstance(style_outputs, list) or len(
