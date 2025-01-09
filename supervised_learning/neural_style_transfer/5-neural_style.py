@@ -63,6 +63,7 @@ class NST:
         self.beta = beta
         self.load_model()
         self.generate_features()
+        self.style_cost()
 
     @staticmethod
     def scale_image(image):
@@ -192,7 +193,7 @@ class NST:
     def style_cost(self, style_outputs):
         '''
         Calculates the style cost for the generated image
-        
+
         Return:
             The style cost
         '''
