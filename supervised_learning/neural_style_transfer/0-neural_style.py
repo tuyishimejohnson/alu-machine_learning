@@ -70,7 +70,7 @@ class NST:
         raise a TypeError with the message image must be a numpy.ndarray 
         with shape (h, w, 3)
         returns:
-            the scaled image
+        the scaled image
         """
         if type(image) is not np.ndarray or len(image.shape) != 3:
             raise TypeError(
