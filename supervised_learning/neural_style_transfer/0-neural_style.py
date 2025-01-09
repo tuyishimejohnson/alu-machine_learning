@@ -67,7 +67,7 @@ class NST:
         """
         parameters:
         image - a numpy.ndarray of shape (h, w, 3)
-        raise a TypeError with the message image must be a numpy.ndarray 
+        raise a TypeError with the message image must be a numpy.ndarray
         with shape (h, w, 3)
         returns:
         the scaled image
