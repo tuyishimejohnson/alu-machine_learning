@@ -36,8 +36,8 @@ def deep_rnn(rnn_cells, X, h_0):
         h_prev_layer = x_t  # Input to the first layer
         for layer in range(l):
             # Perform forward propagation for the current layer
-            h_next, y_t = rnn_cells[layer].forward(H[step, layer],
-                                                h_prev_layer)
+            h_next, y_t = rnn_cells[layer].forward(
+                H[step, layer], h_prev_layer)
             # Update hidden state for this layer
             H[step + 1, layer] = h_next
             # Pass this layer's hidden state as input to the next layer
