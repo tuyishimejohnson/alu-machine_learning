@@ -9,6 +9,9 @@ import numpy as np
 
 
 class RNNCell:
+    """
+    Creates a constructor function.
+    """
     def __init__(self, i, h, o):
         """
         Parameters:
