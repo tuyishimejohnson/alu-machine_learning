@@ -1,4 +1,12 @@
+#!/usr/bin/env python3
+
+"""
+BidirectionalCell that represents
+a bidirectional cell of an RNN
+"""
+
 import numpy as np
+
 
 class BidirectionalCell:
     """
