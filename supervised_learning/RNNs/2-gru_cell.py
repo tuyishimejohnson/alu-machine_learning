@@ -8,6 +8,9 @@ import numpy as np
 
 
 class GRUCell:
+    """
+    Creates a constructor function.
+    """
     def __init__(self, i, h, o):
         """
         Initialize the GRUCell instance.
