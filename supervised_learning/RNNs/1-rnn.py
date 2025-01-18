@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
-
+"""
+A function to perform forward propagation
+"""
 
 import numpy as np
+
 
 def rnn(rnn_cell, X, h_0):
     """
     Performs forward propagation for a simple RNN.
 
     Parameters:
-    - rnn_cell: an instance of RNNCell that will be used for the forward propagation
+    - rnn_cell: an instance of RNNCell
     - X: numpy.ndarray of shape (t, m, i) containing the input data
-        * t: maximum number of time steps
-        * m: batch size
-        * i: dimensionality of the data
     - h_0: numpy.ndarray of shape (m, h) containing the initial hidden state
-        * h: dimensionality of the hidden state
 
     Returns:
-    - H: numpy.ndarray of shape (t + 1, m, h) containing all of the hidden states
+    - H: numpy.ndarray of shape (t + 1, m, h)
     - Y: numpy.ndarray of shape (t, m, o) containing all of the outputs
-        * o: dimensionality of the outputs
     """
     t, m, _ = X.shape
     h = h_0.shape[1]
