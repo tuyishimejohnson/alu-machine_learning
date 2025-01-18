@@ -7,8 +7,8 @@ A class class LSTMCell that represents an LSTM unit
 
 import numpy as np
 
-class LSTMCell:
 
+class LSTMCell:
     """
     Initialize the LSTMCell.
     """
@@ -22,12 +22,8 @@ class LSTMCell:
         # Forget gate weights and biases
         self.Wf = np.random.randn(i + h, h)
         self.bf = np.zeros((1, h))
-
-        # Update gate (input gate) weights and biases
         self.Wu = np.random.randn(i + h, h)
         self.bu = np.zeros((1, h))
-
-        # Intermediate cell state weights and biases
         self.Wc = np.random.randn(i + h, h)
         self.bc = np.zeros((1, h))
 
