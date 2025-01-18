@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
 import numpy as np
+"""
+Create a class RNNCell that represents
+a cell of a simple RNN.
+"""
 
 
 class RNNCell:
     def __init__(self, i, h, o):
         """
-        Constructor for the RNNCell class.
-
         Parameters:
         - i (int): Dimensionality of the input data.
         - h (int): Dimensionality of the hidden state.
