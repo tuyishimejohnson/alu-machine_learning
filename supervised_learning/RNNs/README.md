@@ -1,0 +1,1 @@
+# This project covers the concept of Reccurrent Neural Networks(RNNs).
