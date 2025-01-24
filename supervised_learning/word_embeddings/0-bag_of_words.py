@@ -7,45 +7,43 @@ A function that creates a TF-IDF embedding.
 
 import numpy as np
 from collections import Counter
-from math import log
+import re
 
-def tf_idf(sentences, vocab=None):
-    """
-    Computes TF-IDF embeddings for a list of sentences
-    Returns:
-    A numpy.ndarray of shape (s, f) containing the embeddings
-    A list of features (vocabulary) used for embeddings
-    """
-    tokenized_sentences = [sentence.split() for sentence in sentences]
 
+def bag_of_words(sentences, vocab=None):
+    """
+    Bag of words function
+    """
+    # Tokenize sentences
+    tokenized_sentences = [
+        re.findall(r'\w+', sentence.lower()) for sentence in sentences
+        ]
+
+    # Create vocabulary if not provided
     if vocab is None:
-        vocab = sorted(set(word for sentence in tokenized_sentences for word in sentence))
+        all_words = [
+            word for sentence in tokenized_sentences for word in sentence
+            ]
+        vocab = sorted(set(all_words))
     else:
-        vocab = sorted(vocab)
-    
-    # Initialize variables
-    s = len(sentences)
-    f = len(vocab)
-    vocab_index = {word: idx for idx, word in enumerate(vocab)}
-    
-    # Compute term frequency (TF)
-    tf = np.zeros((s, f), dtype=float)
+        all_words = [
+            word for sentence in tokenized_sentences for word in sentence
+            ]
+
+    # Create features list, using provided vocab or generated vocab
+    features = [word for word in vocab if word != '' and word != 's']
+
+    # Create word-to-index mapping
+    word_to_index = {word: index for index, word in enumerate(features)}
+
+    # Initialize embeddings matrix
+    embeddings = np.zeros((len(sentences), len(features)), dtype=int)
+
+    # Fill embeddings matrix
     for i, sentence in enumerate(tokenized_sentences):
         word_counts = Counter(sentence)
-        total_words = len(sentence)
         for word, count in word_counts.items():
-            if word in vocab_index:
-                tf[i, vocab_index[word]] = count / total_words
-    
-    # Compute inverse document frequency (IDF)
-    idf = np.zeros(f, dtype=float)
-    for word, idx in vocab_index.items():
-        doc_count = sum(1 for sentence in tokenized_sentences if word in sentence)
-        idf[idx] = log(s / (1 + doc_count))
-    
-    # Compute TF-IDF
-    tf_idf_matrix = tf * idf
-    
-    return tf_idf_matrix, vocab
+            if word in word_to_index:
+                embeddings[i, word_to_index[word]] += count
 
-
+    return embeddings, features
