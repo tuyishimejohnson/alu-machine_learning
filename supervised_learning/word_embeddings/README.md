@@ -1,0 +1,1 @@
+# This project discusses word embeddings in natural language processing.
